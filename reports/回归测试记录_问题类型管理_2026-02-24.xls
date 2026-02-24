@@ -1,0 +1,25 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+  <title>回归测试记录_问题类型管理_2026-02-24.md</title>
+  <style>
+    body { font-family: "Microsoft YaHei", Arial, sans-serif; padding: 16px; }
+    table { border-collapse: collapse; width: 100%; }
+    th { background: #f3f4f6; }
+  </style>
+</head>
+<body>
+
+<table border="1" cellspacing="0" cellpadding="6">
+  <thead>
+    <tr><th>用例ID</th><th>用例名称</th><th>本次结果</th><th>关联缺陷</th><th>修复版本</th><th>回归结果</th><th>回归日期</th><th>回归人</th><th>备注</th><th>指派人</th><th>验证人</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>TC-PTM-001</td><td>列表页展示与字段校验</td><td>通过</td><td>-</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-002</td><td>默认每页20条</td><td>通过</td><td>-</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-003</td><td>筛选(解决方式)</td><td>通过</td><td>-</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-004</td><td>筛选(是否可用)</td><td>失败</td><td>BUG-PTM-001</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-005</td><td>编码模糊查询</td><td>失败</td><td>BUG-PTM-002</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-006</td><td>备注悬停显示全文</td><td>失败</td><td>BUG-PTM-003</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-007</td><td>新增问题类型(手动编码)</td><td>通过</td><td>-</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-008</td><td>新增问题类型(自动编码)</td><td>通过</td><td>-</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-009</td><td>查询(名称+编码组合)</td><td>通过</td><td>-</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-010</td><td>重置查询恢复列表</td><td>通过</td><td>-</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-011</td><td>删除后刷新不再显示</td><td>失败</td><td>BUG-PTM-004</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-012</td><td>编辑备注刷新后保持</td><td>已知缺陷</td><td>BUG-PTM-005</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-013</td><td>启用/禁用刷新后保持</td><td>已知缺陷</td><td>BUG-PTM-006</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-014</td><td>必填校验(名称、解决方式)</td><td>通过</td><td>-</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-015</td><td>重复编码校验</td><td>通过</td><td>-</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-016</td><td>复制问题类型</td><td>通过</td><td>-</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-017</td><td>查询(名称与编码)</td><td>通过</td><td>-</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-018</td><td>查询无结果空态</td><td>通过</td><td>-</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-019</td><td>分页与每页条数</td><td>通过</td><td>-</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-020</td><td>详情编辑备注</td><td>通过</td><td>-</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-021</td><td>启用/禁用切换</td><td>通过</td><td>-</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-022</td><td>删除问题类型</td><td>通过</td><td>-</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-023</td><td>新增后刷新列表页数据仍存在</td><td>已知缺陷</td><td>BUG-PTM-007</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr><tr><td>TC-PTM-024</td><td>新增后刷新查询仍存在</td><td>已知缺陷</td><td>BUG-PTM-008</td><td>欧阳玉峰</td><td>欧阳玉峰</td></tr>
+  </tbody>
+</table>
+
+</body>
+</html>

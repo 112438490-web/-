@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>自动化测试报告 - 问题类型管理</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --warning: #d97706;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at 20% 20%, #eef2ff, #f5f7fb 40%);
+    }
+    .container { max-width: 1200px; margin: 24px auto 64px; padding: 0 20px; }
+    .header {
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: #fff;
+      border-radius: 16px;
+      padding: 24px 28px;
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.25);
+    }
+    .title { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+    .subtitle { opacity: 0.9; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
+    }
+    .card h3 { font-size: 13px; color: var(--muted); margin: 0 0 8px; }
+    .card .value { font-size: 24px; font-weight: 700; }
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--danger);
+    }
+    .section { margin-top: 26px; }
+    .section h2 { font-size: 18px; margin: 0 0 12px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th { background: #f3f4f6; font-weight: 600; }
+    tr:last-child td { border-bottom: none; }
+    .muted { color: var(--muted); }
+    .status-pass { color: var(--success); font-weight: 600; }
+    .status-fail { color: var(--danger); font-weight: 600; }
+    .status-skip { color: var(--warning); font-weight: 600; }
+    .footer { margin-top: 18px; color: var(--muted); font-size: 12px; }
+    .shot {
+      display: inline-block;
+      max-width: 180px;
+      max-height: 120px;
+      margin: 4px 6px 4px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      object-fit: cover;
+      background: #fff;
+    }
+    @media (max-width: 980px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } .title { font-size: 20px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title">自动化测试报告 - 问题类型管理</div>
+      <div class="subtitle">问题闭环管理 / SPT-问题类型管理</div>
+    </div>
+
+    <div class="grid">
+      <div class="card"><h3>执行日期</h3><div class="value">2026-02-09</div></div>
+      <div class="card"><h3>用例总数</h3><div class="value">7</div></div>
+      <div class="card"><h3>通过 / 失败 / 未执行</h3><div class="value">3 / 4 / 0</div></div>
+      <div class="card"><h3>结论</h3><div class="value"><span class="pill">失败</span></div></div>
+    </div>
+
+    <div class="section">
+      <h2>执行信息</h2>
+      <table>
+        <tbody>
+          <tr><th>测试地址</th><td>http://47.97.84.212:3000/</td></tr>
+          <tr><th>执行账号</th><td>admin / 111111</td></tr>
+          <tr><th>工具</th><td>Playwright（Headless）</td></tr>
+          <tr><th>开始时间</th><td>2026-02-09 19:01:53</td></tr>
+          <tr><th>结束时间</th><td>2026-02-09 19:04:48</td></tr>
+          <tr><th>总耗时</th><td>2m 54s（累计用例耗时）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>用例明细</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>用例编号</th>
+            <th>用例名称</th>
+            <th>结果</th>
+            <th>耗时</th>
+            <th>开始时间</th>
+            <th>截图</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <td>TC-PTM-001</td>
+              <td>查询（名称+编码组合）</td>
+              <td class="status-pass">通过</td>
+              <td>20s</td>
+              <td>2026-02-09 19:01:53</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-17c55-h-by-name-and-code-combined/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-002</td>
+              <td>重置查询恢复列表</td>
+              <td class="status-pass">通过</td>
+              <td>9s</td>
+              <td>2026-02-09 19:02:13</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-82621--reset-search-restores-list/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-003</td>
+              <td>删除后刷新不再显示</td>
+              <td class="status-pass">通过</td>
+              <td>15s</td>
+              <td>2026-02-09 19:02:23</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-9b3a7-resh-no-longer-shows-record/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-004</td>
+              <td>编辑备注刷新后保持</td>
+              <td class="status-fail">失败</td>
+              <td>38s</td>
+              <td>2026-02-09 19:02:38</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-088c7-mark-persists-after-refresh/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-005</td>
+              <td>启用/禁用刷新后保持</td>
+              <td class="status-fail">失败</td>
+              <td>10s</td>
+              <td>2026-02-09 19:03:16</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-067b6-able-persists-after-refresh/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-006</td>
+              <td>新增后刷新列表页数据仍存在</td>
+              <td class="status-fail">失败</td>
+              <td>40s</td>
+              <td>2026-02-09 19:03:26</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-9d6f5-ist-page-still-shows-record/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-007</td>
+              <td>新增后刷新查询仍存在</td>
+              <td class="status-fail">失败</td>
+              <td>41s</td>
+              <td>2026-02-09 19:04:07</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-d79a1-e-then-refresh-retains-data/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>附件与路径</h2>
+      <div class="card">
+        <div>原生报告：E:\宝洁\test3\playwright-report\index.html</div>
+        <div>产物目录：E:\宝洁\test3\test-results</div>
+      </div>
+    </div>
+
+    <div class="footer">备注：当前运行未生成截图（仅失败时生成），如需全量截图可开启 screenshot: "on" 重新执行。</div>
+  </div>
+</body>
+</html>

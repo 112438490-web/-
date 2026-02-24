@@ -1,4 +1,4 @@
-﻿const { defineConfig } = require('@playwright/test');
+const { defineConfig } = require('@playwright/test');
 
 module.exports = defineConfig({
   timeout: 120 * 1000,
@@ -11,7 +11,7 @@ module.exports = defineConfig({
     viewport: { width: 1280, height: 800 },
     actionTimeout: 10 * 1000,
     navigationTimeout: 90 * 1000,
-    screenshot: 'only-on-failure',
+    screenshot: 'on',
     video: 'retain-on-failure',
     trace: 'retain-on-failure'
   },

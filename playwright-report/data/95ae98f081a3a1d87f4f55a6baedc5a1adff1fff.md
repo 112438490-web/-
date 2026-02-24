@@ -1,0 +1,95 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e4]:
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: "问题类型编码:"
+        - textbox "问题类型编码:" [ref=e16]:
+          - /placeholder: 请输入问题类型编码
+      - generic [ref=e17]:
+        - generic [ref=e18]: "问题类型名称:"
+        - generic [ref=e22]:
+          - textbox "问题类型名称:" [ref=e23]:
+            - /placeholder: 请输入问题类型名称
+            - text: 自动化刷新列表-977397
+          - 'button "图标: close-circle" [ref=e25] [cursor=pointer]':
+            - img [ref=e26]
+      - generic [ref=e28]:
+        - generic [ref=e29]: "解决方式:"
+        - combobox [ref=e34] [cursor=pointer]:
+          - generic [ref=e36]: 请选择解决方式
+          - 'generic "图标: down" [ref=e38]':
+            - img [ref=e39]
+      - generic [ref=e41]:
+        - generic [ref=e42]: "是否可用:"
+        - combobox [ref=e47] [cursor=pointer]:
+          - generic [ref=e49]: 请选择
+          - 'generic "图标: down" [ref=e51]':
+            - img [ref=e52]
+    - generic [ref=e54]:
+      - 'button "图标: search 查询" [ref=e55] [cursor=pointer]':
+        - 'generic "图标: search"':
+          - img
+        - generic: 查询
+      - button "重 置" [ref=e56] [cursor=pointer]:
+        - generic: 重 置
+  - generic [ref=e57]:
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - generic [ref=e61]: 
+        - strong [ref=e62]: 问题类型列表
+      - generic [ref=e63]:
+        - button " 新增" [ref=e64] [cursor=pointer]:
+          - generic: 
+          - generic: 新增
+        - 'button "图标: reload" [active] [ref=e67] [cursor=pointer]':
+          - 'generic "图标: reload"':
+            - img
+    - generic [ref=e68]:
+      - generic [ref=e70]:
+        - grid [ref=e71]:
+          - row "序号 问题类型编码 问题类型名称 解决方式 备注 是否可用 创建时间 创建人 更新时间 更新人 操作" [ref=e72]:
+            - columnheader "序号" [ref=e73]:
+              - generic [ref=e76]: 序号
+            - columnheader "问题类型编码" [ref=e77]:
+              - generic [ref=e80]: 问题类型编码
+            - columnheader "问题类型名称" [ref=e81]:
+              - generic [ref=e84]: 问题类型名称
+            - columnheader "解决方式" [ref=e85]:
+              - generic [ref=e88]: 解决方式
+            - columnheader "备注" [ref=e89]:
+              - generic [ref=e92]: 备注
+            - columnheader "是否可用" [ref=e93]:
+              - generic [ref=e96]: 是否可用
+            - columnheader "创建时间" [ref=e97]:
+              - generic [ref=e100]: 创建时间
+            - columnheader "创建人" [ref=e101]:
+              - generic [ref=e104]: 创建人
+            - columnheader "更新时间" [ref=e105]:
+              - generic [ref=e108]: 更新时间
+            - columnheader "更新人" [ref=e109]:
+              - generic [ref=e112]: 更新人
+            - columnheader
+            - columnheader "操作" [ref=e114]:
+              - generic [ref=e117]: 操作
+        - generic [ref=e119]:
+          - img [ref=e121]
+          - paragraph [ref=e127]: 暂无数据
+      - list [ref=e129]:
+        - listitem [ref=e130]: 当前 0-0 条 共 0 条 记录
+        - listitem "上一页" [ref=e131]:
+          - 'generic "图标: left" [ref=e133]':
+            - img [ref=e134]
+        - listitem "0" [ref=e136]:
+          - generic [ref=e137]: "0"
+        - listitem "下一页" [ref=e138]:
+          - 'generic "图标: right" [ref=e140]':
+            - img [ref=e141]
+        - listitem [ref=e143]:
+          - combobox [ref=e145] [cursor=pointer]:
+            - generic "20 条/页" [ref=e147]
+            - 'generic "图标: down" [ref=e149]':
+              - img [ref=e150]
+```

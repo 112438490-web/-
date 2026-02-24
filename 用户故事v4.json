@@ -1,0 +1,2037 @@
+{
+  "modules": [
+    {
+      "moduleId": "module-01",
+      "moduleName": "问题类型管理",
+      "moduleCode": "problem-type-management",
+      "prdReference": "6.1.1",
+      "userStories": [
+        {
+          "storyId": "US-01-001",
+          "storyName": "问题类型列表显示",
+          "asA": "系统用户",
+          "iWantTo": "查看问题类型列表",
+          "soThat": "能够浏览和管理所有问题类型",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Display problem type list",
+              "given": "用户具有查看权限",
+              "when": "user navigates to `/problem-closed-loop-management/problem-type-management`",
+              "then": "system displays a table with columns: 问题类型编码, 问题类型名称, 解决方式, 备注 (truncated with ellipsis, full text on hover), 是否可用 (toggle switch), 创建时间, 创建人, 更新时间, 更新人",
+              "and": [
+                "pagination controls are shown at the bottom",
+                "default page size is 20 records per page"
+              ]
+            },
+            {
+              "scenario": "Filter by problem type code",
+              "given": "问题类型列表已显示",
+              "when": "user enters text in 问题类型编码 filter field",
+              "then": "system performs fuzzy search on problem type codes",
+              "and": [
+                "displays matching results"
+              ]
+            },
+            {
+              "scenario": "Filter by resolution method",
+              "given": "问题类型列表已显示",
+              "when": "user selects a resolution method from dropdown (8D/精益/简单)",
+              "then": "system displays only problem types with that resolution method"
+            },
+            {
+              "scenario": "Filter by availability status",
+              "given": "问题类型列表已显示",
+              "when": "user selects availability status (是/否)",
+              "then": "system displays only enabled or disabled problem types accordingly"
+            }
+          ],
+          "businessRules": [
+            {
+              "ruleId": "BR-01-001",
+              "description": "列表字段包含: 问题类型编码, 问题类型名称, 解决方式, 备注, 是否可用, 创建时间, 创建人, 更新时间, 更新人"
+            },
+            {
+              "ruleId": "BR-01-002",
+              "description": "备注字段: 文本量较多, 宽度加大, 显示一行, 显示不出的用省略号代替, 鼠标悬浮可查看全部内容"
+            },
+            {
+              "ruleId": "BR-01-003",
+              "description": "默认分页大小为20条记录每页"
+            }
+          ],
+          "validationRules": [],
+          "dataFields": [
+            {
+              "fieldName": "问题类型编码",
+              "fieldType": "文本框",
+              "required": false,
+              "searchable": true,
+              "searchType": "模糊查询"
+            },
+            {
+              "fieldName": "问题类型名称",
+              "fieldType": "文本框",
+              "required": false,
+              "searchable": true,
+              "searchType": "模糊查询"
+            },
+            {
+              "fieldName": "解决方式",
+              "fieldType": "下拉框",
+              "required": false,
+              "options": ["8D", "精益", "简单"],
+              "optionsSource": "字典",
+              "searchable": true,
+              "searchType": "单选"
+            },
+            {
+              "fieldName": "是否可用",
+              "fieldType": "下拉框",
+              "required": false,
+              "options": ["是", "否"],
+              "optionsSource": "枚举",
+              "searchable": true,
+              "searchType": "单选"
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-01-002",
+          "storyName": "问题类型编码自动生成",
+          "asA": "系统用户",
+          "iWantTo": "创建问题类型时自动生成编码",
+          "soThat": "确保编码唯一性和规范性",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Auto-generate code on create",
+              "given": "用户创建新问题类型",
+              "when": "user creates a problem type without specifying 问题类型编码",
+              "then": "system generates code in format `QT00001`, `QT00002`, etc.",
+              "and": [
+                "code sequence increments based on existing maximum sequence number"
+              ]
+            },
+            {
+              "scenario": "Use manual code when provided",
+              "given": "用户提供问题类型编码",
+              "when": "user provides 问题类型编码 during creation",
+              "then": "system uses the provided code",
+              "and": [
+                "validates uniqueness before saving"
+              ]
+            },
+            {
+              "scenario": "Reject duplicate code",
+              "given": "用户提供的编码已存在",
+              "when": "user provides a 问题类型编码 that already exists",
+              "then": "system shows validation error: \"问题类型编码重复,请重新录入\"",
+              "and": [
+                "does not save the record"
+              ]
+            }
+          ],
+          "businessRules": [
+            {
+              "ruleId": "BR-01-004",
+              "description": "编码规则: QT + 五位流水号"
+            },
+            {
+              "ruleId": "BR-01-005",
+              "description": "示例: QT00004"
+            }
+          ],
+          "validationRules": [
+            {
+              "ruleId": "VR-01-001",
+              "field": "问题类型编码",
+              "rule": "唯一性校验",
+              "errorMessage": "问题类型编码重复,请重新录入"
+            }
+          ],
+          "dataFields": [
+            {
+              "fieldName": "问题类型编码",
+              "fieldType": "文本框",
+              "required": false,
+              "autoGenerate": true,
+              "generationRule": "QT + 五位流水号",
+              "example": "QT00004"
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        }
+      ]
+    },
+    {
+      "moduleId": "module-02",
+      "moduleName": "质量问题管理",
+      "moduleCode": "quality-problem-management",
+      "prdReference": "6.1.2",
+      "userStories": [
+        {
+          "storyId": "US-02-001",
+          "storyName": "质量问题列表显示和查询",
+          "asA": "系统用户",
+          "iWantTo": "查看和筛选质量问题列表",
+          "soThat": "能够管理质量问题",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Display quality problem list with real backend data",
+              "given": "后端服务运行且数据库有数据",
+              "when": "user navigates to `/problem-closed-loop-management/quality-problem-management`",
+              "then": "system calls `/spt/api/quality-problems/list` endpoint",
+              "and": [
+                "displays returned records in data table",
+                "shows accurate total count in pagination",
+                "renders all columns with data from backend"
+              ]
+            }
+          ],
+          "businessRules": [
+            {
+              "ruleId": "BR-02-001",
+              "description": "列表字段: 问题编号(超链接), 问题名称, 问题类型, 问题产品, 责任部门, 责任人, 严重度, 优先级, 处理状态, 当前阶段, 期望解决时间, 问题发现时间"
+            },
+            {
+              "ruleId": "BR-02-002",
+              "description": "严重度颜色: 高=红色, 中=蓝色, 低=灰色"
+            },
+            {
+              "ruleId": "BR-02-003",
+              "description": "优先级颜色: 高=红色, 中=蓝色, 低=灰色"
+            }
+          ],
+          "validationRules": [],
+          "dataFields": [
+            {
+              "fieldName": "问题编码",
+              "fieldType": "文本框",
+              "required": false,
+              "searchable": true,
+              "searchType": "模糊查询"
+            },
+            {
+              "fieldName": "问题名称",
+              "fieldType": "文本框",
+              "required": false,
+              "searchable": true,
+              "searchType": "模糊查询"
+            },
+            {
+              "fieldName": "严重度",
+              "fieldType": "下拉选择框",
+              "required": false,
+              "options": ["高", "中", "低"],
+              "optionsSource": "字典",
+              "searchable": true
+            },
+            {
+              "fieldName": "优先级",
+              "fieldType": "下拉选择框",
+              "required": false,
+              "options": ["高", "中", "低"],
+              "optionsSource": "字典",
+              "searchable": true
+            },
+            {
+              "fieldName": "处理状态",
+              "fieldType": "下拉选择框",
+              "required": false,
+              "options": ["待分配", "处理中", "已关闭", "已完成"],
+              "optionsSource": "枚举",
+              "searchable": true
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-02-002",
+          "storyName": "质量问题编码自动生成",
+          "asA": "系统用户",
+          "iWantTo": "自动生成唯一的问题编码",
+          "soThat": "确保编码规范和唯一性",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Auto-generate code on create without input",
+              "given": "用户创建质量问题",
+              "when": "user creates a problem without specifying 问题编码",
+              "then": "system generates code in format `PCLM` + current date YYMMDD + 4-digit sequence starting from 0001",
+              "and": [
+                "sequence resets to 0001 each day"
+              ]
+            }
+          ],
+          "businessRules": [
+            {
+              "ruleId": "BR-02-004",
+              "description": "编码规则: PCLM + YYMMDD + 四位流水号"
+            },
+            {
+              "ruleId": "BR-02-005",
+              "description": "示例: PCLM2302110001"
+            },
+            {
+              "ruleId": "BR-02-006",
+              "description": "流水号每天重置为0001"
+            }
+          ],
+          "validationRules": [
+            {
+              "ruleId": "VR-02-001",
+              "field": "问题编码",
+              "rule": "唯一性校验",
+              "errorMessage": "问题编码重复,请重新录入"
+            }
+          ],
+          "dataFields": [],
+          "inputExamples": {
+            "问题编码": "PCLM2302110001"
+          },
+          "priority": "H"
+        }
+      ]
+    },
+    {
+      "moduleId": "module-03",
+      "moduleName": "D1组建团队",
+      "moduleCode": "d1-team-formation",
+      "prdReference": "6.1.3",
+      "userStories": [
+        {
+          "storyId": "US-03-001",
+          "storyName": "D1基础信息管理",
+          "asA": "系统用户",
+          "iWantTo": "配置团队领导和成员",
+          "soThat": "组建问题解决团队",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Create D1 basic info with team leaders and members",
+              "given": "首次进入D1页面",
+              "when": "user enters D1 page for the first time (no existing D1 basic info)",
+              "then": "system displays form with fields: 小组领导者 (multi-select), 小组成员 (multi-select)",
+              "and": [
+                "both fields show searchable dropdown with employee list",
+                "both fields are marked as required"
+              ]
+            }
+          ],
+          "businessRules": [
+            {
+              "ruleId": "BR-03-004",
+              "description": "基础信息保存后才能配置人员和计划"
+            },
+            {
+              "ruleId": "BR-03-005",
+              "description": "同一用户可同时作为领导者和成员"
+            }
+          ],
+          "validationRules": [
+            {
+              "ruleId": "VR-03-001",
+              "field": "小组领导者",
+              "rule": "必填",
+              "errorMessage": "小组领导者和小组成员为必填项"
+            },
+            {
+              "ruleId": "VR-03-002",
+              "field": "小组成员",
+              "rule": "必填",
+              "errorMessage": "小组领导者和小组成员为必填项"
+            }
+          ],
+          "dataFields": [
+            {
+              "fieldName": "小组领导者",
+              "fieldType": "下拉查询多选框",
+              "required": true
+            },
+            {
+              "fieldName": "小组成员",
+              "fieldType": "下拉查询多选框",
+              "required": true
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        }
+      ]
+    },
+    {
+      "moduleId": "module-04",
+      "moduleName": "D2问题描述",
+      "moduleCode": "d2-problem-description",
+      "prdReference": "6.1.4",
+      "userStories": [
+        {
+          "storyId": "US-04-001",
+          "storyName": "问题信息显示",
+          "asA": "系统用户",
+          "iWantTo": "查看问题基本信息",
+          "soThat": "了解问题背景",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Display problem information card",
+              "given": "用户访问D2问题描述页面",
+              "when": "user navigates to D2 problem description page with a valid problem ID",
+              "then": "system displays problem information card in expanded state by default",
+              "and": [
+                "card shows problem code, name, type, product, occurrence time, responsible department/person, severity, priority, attachments, and remarks"
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [],
+          "dataFields": [],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-04-002",
+          "storyName": "文本输入工具",
+          "asA": "系统用户",
+          "iWantTo": "使用文本输入工具描述问题",
+          "soThat": "记录问题描述",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Input problem description text",
+              "given": "用户选择文本输入工具",
+              "when": "user types in the multi-line text area",
+              "then": "system displays real-time character count in format \"X / 2000\"",
+              "and": [
+                "system allows input up to 2000 characters"
+              ]
+            },
+            {
+              "scenario": "Save text description",
+              "given": "用户输入了有效文本",
+              "when": "user enters valid text (1-2000 characters) and clicks Save button",
+              "then": "system saves description with tool_type=\"text\"",
+              "and": [
+                "system stores text in JSON format: {\"text_content\": \"...\"}",
+                "system displays success notification \"Saved successfully\""
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [
+            {
+              "ruleId": "VR-04-001",
+              "field": "问题描述文本",
+              "rule": "不能为空",
+              "errorMessage": "Problem description cannot be empty"
+            },
+            {
+              "ruleId": "VR-04-002",
+              "field": "问题描述文本",
+              "rule": "最多2000字符",
+              "errorMessage": "Character limit reached: 2000"
+            }
+          ],
+          "dataFields": [
+            {
+              "fieldName": "问题描述文本",
+              "fieldType": "多行文本框",
+              "required": true,
+              "maxLength": 2000
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-04-003",
+          "storyName": "是不是清单工具",
+          "asA": "系统用户",
+          "iWantTo": "使用是不是清单工具分析问题",
+          "soThat": "进行对比分析",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Add checklist row",
+              "given": "用户选择是不是清单工具",
+              "when": "user clicks \"Add\" button with empty row count input field",
+              "then": "system adds 1 blank row to checklist table",
+              "and": [
+                "new row contains empty \"Is\" and \"Is Not\" input fields and a delete button"
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [
+            {
+              "ruleId": "VR-04-003",
+              "field": "是不是清单",
+              "rule": "不能为空",
+              "errorMessage": "Checklist cannot be empty"
+            },
+            {
+              "ruleId": "VR-04-004",
+              "field": "是",
+              "rule": "必填",
+              "errorMessage": "Row X: 'Is' cannot be empty"
+            },
+            {
+              "ruleId": "VR-04-005",
+              "field": "不是",
+              "rule": "必填",
+              "errorMessage": "Row X: 'Is Not' cannot be empty"
+            }
+          ],
+          "dataFields": [
+            {
+              "fieldName": "是",
+              "fieldType": "文本框",
+              "required": true,
+              "maxLength": 200
+            },
+            {
+              "fieldName": "不是",
+              "fieldType": "文本框",
+              "required": true,
+              "maxLength": 200
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-04-004",
+          "storyName": "5W1H分析工具",
+          "asA": "系统用户",
+          "iWantTo": "使用5W1H工具分析问题",
+          "soThat": "全面描述问题",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Fill 5W1H basic fields",
+              "given": "用户选择5W1H工具",
+              "when": "user enters text in What, When, Who, Why, and How Much fields",
+              "then": "system stores input in component state",
+              "and": [
+                "system validates each field does not exceed 1000 characters"
+              ]
+            },
+            {
+              "scenario": "Enable 5WHY analysis",
+              "given": "用户在5W1H工具中",
+              "when": "user selects \"Yes\" for \"Perform 5WHY Analysis\" option",
+              "then": "system immediately displays 10 input fields: why1-why5 and answer1-answer5",
+              "and": [
+                "all 10 fields are marked as mandatory (required)"
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [
+            {
+              "ruleId": "VR-04-006",
+              "field": "What",
+              "rule": "必填",
+              "errorMessage": "What cannot be empty"
+            },
+            {
+              "ruleId": "VR-04-007",
+              "field": "When",
+              "rule": "必填",
+              "errorMessage": "When cannot be empty"
+            },
+            {
+              "ruleId": "VR-04-008",
+              "field": "Who",
+              "rule": "必填",
+              "errorMessage": "Who cannot be empty"
+            },
+            {
+              "ruleId": "VR-04-009",
+              "field": "Why",
+              "rule": "必填",
+              "errorMessage": "Why cannot be empty"
+            },
+            {
+              "ruleId": "VR-04-010",
+              "field": "How Much",
+              "rule": "必填",
+              "errorMessage": "How Much cannot be empty"
+            }
+          ],
+          "dataFields": [
+            {
+              "fieldName": "What",
+              "fieldType": "多行文本框",
+              "required": true,
+              "maxLength": 1000
+            },
+            {
+              "fieldName": "When",
+              "fieldType": "多行文本框",
+              "required": true,
+              "maxLength": 1000
+            },
+            {
+              "fieldName": "Who",
+              "fieldType": "多行文本框",
+              "required": true,
+              "maxLength": 1000
+            },
+            {
+              "fieldName": "Why",
+              "fieldType": "多行文本框",
+              "required": true,
+              "maxLength": 1000
+            },
+            {
+              "fieldName": "How Much",
+              "fieldType": "多行文本框",
+              "required": true,
+              "maxLength": 1000
+            },
+            {
+              "fieldName": "是否进行5WHY分析",
+              "fieldType": "开关",
+              "required": false
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-04-005",
+          "storyName": "D2步骤完结",
+          "asA": "系统用户",
+          "iWantTo": "完成D2阶段",
+          "soThat": "进入下一阶段",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Verify description saved before completion",
+              "given": "用户点击步骤完结",
+              "when": "user clicks \"Complete Stage\" button",
+              "then": "system first verifies problem description data is saved",
+              "and": [
+                "if not saved, system displays error \"Please save problem description first\"",
+                "if saved, system proceeds with completion workflow"
+              ]
+            },
+            {
+              "scenario": "Complete stage without approval workflow",
+              "given": "问题类型无审批节点",
+              "when": "user clicks \"Complete Stage\" button and problem type has no approval configured for D2",
+              "then": "system directly updates problem current_stage to \"D3\"",
+              "and": [
+                "system sets D2 is_completed=true and records actual_end_time",
+                "system displays notification \"Stage completed successfully, progressed to next stage\""
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [
+            {
+              "ruleId": "VR-04-011",
+              "field": "问题描述",
+              "rule": "必须已保存",
+              "errorMessage": "Please save problem description first"
+            }
+          ],
+          "dataFields": [],
+          "inputExamples": {},
+          "priority": "H"
+        }
+      ]
+    },
+    {
+      "moduleId": "module-05",
+      "moduleName": "D3临时措施",
+      "moduleCode": "d3-interim-containment-actions",
+      "prdReference": "6.1.5",
+      "userStories": [
+        {
+          "storyId": "US-05-001",
+          "storyName": "临时措施创建和管理",
+          "asA": "系统用户",
+          "iWantTo": "创建和管理临时措施",
+          "soThat": "控制问题影响",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Create new temporary measure tab",
+              "given": "用户具有创建权限",
+              "when": "user clicks \"新增临时措施\" button",
+              "then": "system displays modal dialog with input field: 临时措施名称 (1-100 characters, required)",
+              "and": [
+                "system creates new temporary measure record when confirmed",
+                "adds new tab to tab pane",
+                "switches to new tab showing empty measure form"
+              ]
+            },
+            {
+              "scenario": "Prevent creating more than 10 measures",
+              "given": "已存在10个临时措施",
+              "when": "user attempts to create 11th temporary measure",
+              "then": "system displays error: \"临时措施数量已达上限(最多10个)\"",
+              "and": [
+                "does not create new measure"
+              ]
+            }
+          ],
+          "businessRules": [
+            {
+              "ruleId": "BR-05-001",
+              "description": "最多可创建10个临时措施"
+            }
+          ],
+          "validationRules": [
+            {
+              "ruleId": "VR-05-001",
+              "field": "临时措施名称",
+              "rule": "必填,1-100字符",
+              "errorMessage": ""
+            }
+          ],
+          "dataFields": [
+            {
+              "fieldName": "临时措施名称",
+              "fieldType": "文本框",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            {
+              "fieldName": "临时措施内容",
+              "fieldType": "多行文本框",
+              "required": true,
+              "maxLength": 1000
+            },
+            {
+              "fieldName": "目标时间",
+              "fieldType": "日期时间选择框",
+              "required": true
+            },
+            {
+              "fieldName": "验证人",
+              "fieldType": "下拉多选框",
+              "required": true,
+              "minSelect": 1,
+              "maxSelect": 5
+            },
+            {
+              "fieldName": "执行人",
+              "fieldType": "下拉多选框",
+              "required": true,
+              "minSelect": 1,
+              "maxSelect": 5
+            },
+            {
+              "fieldName": "确认人",
+              "fieldType": "下拉多选框",
+              "required": true,
+              "minSelect": 1,
+              "maxSelect": 5
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-05-002",
+          "storyName": "临时措施验证",
+          "asA": "验证人",
+          "iWantTo": "验证临时措施效果",
+          "soThat": "确认措施有效性",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Display verification card for verifiers",
+              "given": "measure status is \"info_entered\" and current user is in verifier_ids list",
+              "when": "user views measure",
+              "then": "system displays editable verification card",
+              "and": [
+                "card contains fields: 实施前情况, 实施前附件, 实施后情况, 实施后附件, 是否产生新问题"
+              ]
+            },
+            {
+              "scenario": "Save verification without new problem",
+              "given": "验证人填写完验证信息",
+              "when": "verifier fills all fields and selects \"是否产生新问题\" = \"否\" and clicks Save",
+              "then": "system saves verification record",
+              "and": [
+                "sets measure_status to \"verified\"",
+                "locks verification card",
+                "enables execution card"
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [
+            {
+              "ruleId": "VR-05-002",
+              "field": "实施前情况",
+              "rule": "必填",
+              "errorMessage": "请填写实施前/后情况"
+            },
+            {
+              "ruleId": "VR-05-003",
+              "field": "实施后情况",
+              "rule": "必填",
+              "errorMessage": "请填写实施前/后情况"
+            }
+          ],
+          "dataFields": [
+            {
+              "fieldName": "实施前情况",
+              "fieldType": "多行文本框",
+              "required": true,
+              "maxLength": 1000
+            },
+            {
+              "fieldName": "实施后情况",
+              "fieldType": "多行文本框",
+              "required": true,
+              "maxLength": 1000
+            },
+            {
+              "fieldName": "是否产生新问题",
+              "fieldType": "开关",
+              "required": false,
+              "defaultValue": "否"
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-05-003",
+          "storyName": "D3步骤完结",
+          "asA": "系统用户",
+          "iWantTo": "完成D3阶段",
+          "soThat": "进入D4阶段",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Validate step completion has adopted measure",
+              "given": "用户点击步骤完结",
+              "when": "user clicks \"步骤完结\" button and at least one measure has is_adopted=true",
+              "then": "system allows step completion",
+              "and": [
+                "triggers approval workflow if configured",
+                "updates quality_problem.current_stage to \"D4\" if no approval required"
+              ]
+            },
+            {
+              "scenario": "Reject step completion with no adopted measures",
+              "given": "无已采用的临时措施",
+              "when": "user clicks \"步骤完结\" button and all measures have is_adopted=false or are not yet confirmed",
+              "then": "system displays error: \"至少需要1个已采用的临时措施才能完结\"",
+              "and": [
+                "prevents step completion"
+              ]
+            }
+          ],
+          "businessRules": [
+            {
+              "ruleId": "BR-05-002",
+              "description": "至少需要1个已采用的临时措施才能完结"
+            }
+          ],
+          "validationRules": [
+            {
+              "ruleId": "VR-05-004",
+              "field": "已采用的临时措施",
+              "rule": "至少1个",
+              "errorMessage": "至少需要1个已采用的临时措施才能完结"
+            }
+          ],
+          "dataFields": [],
+          "inputExamples": {},
+          "priority": "H"
+        }
+      ]
+    },
+    {
+      "moduleId": "module-06",
+      "moduleName": "D4根因分析",
+      "moduleCode": "d4-root-cause-analysis",
+      "prdReference": "6.1.6",
+      "userStories": [
+        {
+          "storyId": "US-06-001",
+          "storyName": "分析工具选择",
+          "asA": "系统用户",
+          "iWantTo": "选择根因分析工具",
+          "soThat": "使用合适的方法分析根因",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Select character input tool",
+              "given": "用户访问D4页面",
+              "when": "user clicks on \"字符录入\" tool option and no analysis data exists",
+              "then": "system displays text input interface",
+              "and": [
+                "shows multi-line text area with placeholder",
+                "displays character counter: \"0/2000\""
+              ]
+            },
+            {
+              "scenario": "Select 5WHY tool",
+              "given": "用户访问D4页面",
+              "when": "user clicks on \"5WHY\" tool option and no analysis data exists",
+              "then": "system displays 5WHY analysis interface",
+              "and": [
+                "shows 【新增】 button to create WHY cards"
+              ]
+            },
+            {
+              "scenario": "Select fishbone diagram tool",
+              "given": "用户访问D4页面",
+              "when": "user clicks on \"鱼骨图\" tool option and no analysis data exists",
+              "then": "system displays fishbone diagram interface",
+              "and": [
+                "shows 【创建5M1E分析图】 button"
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [],
+          "dataFields": [],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-06-002",
+          "storyName": "字符录入分析",
+          "asA": "系统用户",
+          "iWantTo": "使用文本输入分析根因",
+          "soThat": "简单记录根本原因",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Enter root cause text and save",
+              "given": "用户选择字符录入工具",
+              "when": "user types root cause description (15 characters) and clicks 【保存】",
+              "then": "system validates text length (>= 10 characters)",
+              "and": [
+                "saves analysis_content to database with tool=\"text_input\"",
+                "displays success notification"
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [
+            {
+              "ruleId": "VR-06-001",
+              "field": "根本原因内容",
+              "rule": "不少于10个字符",
+              "errorMessage": "根本原因内容不能少于10个字符"
+            },
+            {
+              "ruleId": "VR-06-002",
+              "field": "根本原因内容",
+              "rule": "不超过2000字符",
+              "errorMessage": "已达到最大字符限制"
+            }
+          ],
+          "dataFields": [
+            {
+              "fieldName": "根本原因内容",
+              "fieldType": "多行文本框",
+              "required": true,
+              "minLength": 10,
+              "maxLength": 2000
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-06-003",
+          "storyName": "5WHY分析",
+          "asA": "系统用户",
+          "iWantTo": "使用5WHY方法分析根因",
+          "soThat": "深入挖掘根本原因",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Create first WHY card",
+              "given": "用户选择5WHY工具",
+              "when": "user clicks 【新增】 button and no WHY cards exist",
+              "then": "system creates WHY1 card",
+              "and": [
+                "card displays: Title \"Why1\", W field (问题), A field (答案), buttons"
+              ]
+            },
+            {
+              "scenario": "Add second WHY after first has answer",
+              "given": "WHY1存在且A字段已填",
+              "when": "user clicks 【新增】 button",
+              "then": "system creates WHY2 card"
+            },
+            {
+              "scenario": "Prevent adding WHY when previous has no answer",
+              "given": "WHY1存在但A字段为空",
+              "when": "user clicks 【新增】 button",
+              "then": "system displays error: \"请先填写上一条WHY的答案\"",
+              "and": [
+                "prevents creation of new WHY card"
+              ]
+            }
+          ],
+          "businessRules": [
+            {
+              "ruleId": "BR-06-001",
+              "description": "最多只能创建5个WHY分析"
+            },
+            {
+              "ruleId": "BR-06-002",
+              "description": "新增WHY前必须填写上一条WHY的答案"
+            }
+          ],
+          "validationRules": [
+            {
+              "ruleId": "VR-06-003",
+              "field": "W (问题)",
+              "rule": "必填",
+              "errorMessage": ""
+            }
+          ],
+          "dataFields": [
+            {
+              "fieldName": "W (问题)",
+              "fieldType": "文本框",
+              "required": true
+            },
+            {
+              "fieldName": "A (答案)",
+              "fieldType": "文本框",
+              "required": false
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-06-004",
+          "storyName": "鱼骨图分析",
+          "asA": "系统用户",
+          "iWantTo": "使用鱼骨图分析根因",
+          "soThat": "可视化分析问题原因",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Create 5M1E analysis structure",
+              "given": "用户选择鱼骨图工具",
+              "when": "user clicks 【创建5M1E分析图】 button",
+              "then": "system creates 6 primary branch nodes: 人员, 设备, 物料, 方法, 测量, 环境",
+              "and": [
+                "nodes are arranged using compactBox tree layout"
+              ]
+            },
+            {
+              "scenario": "Add child node",
+              "given": "鱼骨图已创建",
+              "when": "user right-clicks on a node and selects 【新建子节点】",
+              "then": "system creates new node as child",
+              "and": [
+                "new node displays default label: \"原因待输入\""
+              ]
+            }
+          ],
+          "businessRules": [
+            {
+              "ruleId": "BR-06-003",
+              "description": "鱼骨图最大层级为5层"
+            },
+            {
+              "ruleId": "BR-06-004",
+              "description": "每个父节点最多10个子节点"
+            },
+            {
+              "ruleId": "BR-06-005",
+              "description": "节点总数不能超过100个"
+            }
+          ],
+          "validationRules": [
+            {
+              "ruleId": "VR-06-004",
+              "field": "问题原因",
+              "rule": "必填,最多200字符",
+              "errorMessage": ""
+            }
+          ],
+          "dataFields": [
+            {
+              "fieldName": "问题原因",
+              "fieldType": "文本框",
+              "required": true,
+              "maxLength": 200
+            },
+            {
+              "fieldName": "是否为根本原因",
+              "fieldType": "开关",
+              "required": true
+            },
+            {
+              "fieldName": "问题描述",
+              "fieldType": "多行文本框",
+              "required": false,
+              "maxLength": 1000
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-06-005",
+          "storyName": "D4步骤完结",
+          "asA": "系统用户",
+          "iWantTo": "完成D4阶段",
+          "soThat": "进入D5阶段",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Complete D4 with text input",
+              "given": "用户使用字符录入工具且已保存",
+              "when": "user clicks 【步骤完结】 button",
+              "then": "system validates analysis_content is saved",
+              "and": [
+                "updates quality_problem.current_stage to \"D5\" if no approval required"
+              ]
+            },
+            {
+              "scenario": "Complete D4 with 5WHY",
+              "given": "用户使用5WHY工具",
+              "when": "user clicks 【步骤完结】 with at least 1 WHY saved and all investigation tasks completed",
+              "then": "system validates WHY count and task completion",
+              "and": [
+                "updates quality_problem.current_stage appropriately"
+              ]
+            },
+            {
+              "scenario": "Complete D4 with fishbone",
+              "given": "用户使用鱼骨图工具",
+              "when": "user clicks 【步骤完结】 with at least 1 root cause node and all tasks completed",
+              "then": "system validates root cause count and task completion",
+              "and": [
+                "passes root causes to D5"
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [
+            {
+              "ruleId": "VR-06-005",
+              "field": "根本原因",
+              "rule": "至少1个根本原因节点",
+              "errorMessage": "请确认根本原因节点!"
+            },
+            {
+              "ruleId": "VR-06-006",
+              "field": "调查任务",
+              "rule": "所有任务必须完成",
+              "errorMessage": "请将调查任务做完之后再进行步骤完结操作!"
+            }
+          ],
+          "dataFields": [],
+          "inputExamples": {},
+          "priority": "H"
+        }
+      ]
+    },
+    {
+      "moduleId": "module-07",
+      "moduleName": "D5选择验证措施",
+      "moduleCode": "d5-select-verify-corrective-actions",
+      "prdReference": "6.1.7",
+      "userStories": [
+        {
+          "storyId": "US-07-001",
+          "storyName": "根本原因区域加载",
+          "asA": "系统用户",
+          "iWantTo": "查看根本原因区域",
+          "soThat": "为每个根本原因制定措施",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Load multiple root cause areas (with D4)",
+              "given": "问题已完成D4根因分析",
+              "when": "user navigates to the D5 page and D4 identified 3 root causes",
+              "then": "system loads 3 collapsible areas",
+              "and": [
+                "each area is named by the root cause description",
+                "each area can independently expand/collapse"
+              ]
+            },
+            {
+              "scenario": "Load single area (without D4)",
+              "given": "问题类型工作流不包含D4步骤",
+              "when": "user navigates to the D5 page",
+              "then": "system loads 1 collapsible area named \"永久措施\"",
+              "and": [
+                "measures created in this area are not linked to any root cause"
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [],
+          "dataFields": [],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-07-002",
+          "storyName": "永久措施创建",
+          "asA": "系统用户",
+          "iWantTo": "创建永久措施",
+          "soThat": "消除根本原因",
+          "acceptanceCriteria": [
+            {
+              "scenario": "User creates a new permanent measure",
+              "given": "用户具有D5编辑权限",
+              "when": "user clicks \"新增措施\" button",
+              "then": "system creates a new horizontal tab with default name \"永久措施\"",
+              "and": [
+                "displays the measure creation form with required fields"
+              ]
+            },
+            {
+              "scenario": "User saves a new permanent measure",
+              "given": "用户填写了所有必填字段",
+              "when": "user fills all required fields and clicks \"保存\" button",
+              "then": "system validates all required fields are filled",
+              "and": [
+                "creates a PermanentMeasure record",
+                "updates the tab name to measure_name",
+                "changes button from \"保存\" to \"编辑\""
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [
+            {
+              "ruleId": "VR-07-001",
+              "field": "永久措施名称",
+              "rule": "必填,最多200字符",
+              "errorMessage": ""
+            },
+            {
+              "ruleId": "VR-07-002",
+              "field": "改善措施",
+              "rule": "必填,最多2000字符",
+              "errorMessage": "改善措施不能为空"
+            },
+            {
+              "ruleId": "VR-07-003",
+              "field": "目标时间",
+              "rule": "必选,不能早于今天",
+              "errorMessage": "请选择目标时间;目标时间不能早于今天"
+            },
+            {
+              "ruleId": "VR-07-004",
+              "field": "验证人",
+              "rule": "至少选择1人",
+              "errorMessage": "请至少选择一名验证人"
+            },
+            {
+              "ruleId": "VR-07-005",
+              "field": "验证方法",
+              "rule": "必填,最多2000字符",
+              "errorMessage": "验证方法不能为空"
+            }
+          ],
+          "dataFields": [
+            {
+              "fieldName": "永久措施名称",
+              "fieldType": "文本框",
+              "required": true,
+              "maxLength": 200
+            },
+            {
+              "fieldName": "改善措施",
+              "fieldType": "多行文本框",
+              "required": true,
+              "maxLength": 2000
+            },
+            {
+              "fieldName": "目标时间",
+              "fieldType": "日期选择框",
+              "required": true
+            },
+            {
+              "fieldName": "验证人",
+              "fieldType": "下拉多选框",
+              "required": true
+            },
+            {
+              "fieldName": "验证方法",
+              "fieldType": "多行文本框",
+              "required": true,
+              "maxLength": 2000
+            },
+            {
+              "fieldName": "风险分析",
+              "fieldType": "多行文本框",
+              "required": false,
+              "maxLength": 2000
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-07-003",
+          "storyName": "永久措施验证",
+          "asA": "验证人",
+          "iWantTo": "验证永久措施",
+          "soThat": "确认措施有效性",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Verifier verifies measure as pass",
+              "given": "措施状态为DRAFT且当前用户是验证人",
+              "when": "user sets \"是否验证通过\" = 是 and uploads attachment and clicks \"保存\"",
+              "then": "system creates a MeasureVerification record",
+              "and": [
+                "updates measure status to \"VERIFIED_PASS\"",
+                "displays a green badge with \"通过\" on the measure tab"
+              ]
+            },
+            {
+              "scenario": "Verifier verifies measure as fail and creates new measure",
+              "given": "措施状态为DRAFT且当前用户是验证人",
+              "when": "user sets \"是否验证通过\" = 否 and \"是否创建新措施\" = 是 and clicks \"保存\"",
+              "then": "system creates a MeasureVerification record with is_verified_pass = false",
+              "and": [
+                "automatically creates a new iteration measure",
+                "adds a new iteration tab in the left sidebar"
+              ]
+            }
+          ],
+          "businessRules": [
+            {
+              "ruleId": "BR-07-001",
+              "description": "迭代次数最多5次"
+            }
+          ],
+          "validationRules": [
+            {
+              "ruleId": "VR-07-006",
+              "field": "是否产生新问题",
+              "rule": "验证失败时必选",
+              "errorMessage": "请选择是否产生新问题"
+            },
+            {
+              "ruleId": "VR-07-007",
+              "field": "是否创建新措施",
+              "rule": "验证失败时必选",
+              "errorMessage": "请选择是否创建新措施"
+            }
+          ],
+          "dataFields": [
+            {
+              "fieldName": "是否验证通过",
+              "fieldType": "开关",
+              "required": false,
+              "defaultValue": "是"
+            },
+            {
+              "fieldName": "是否产生新问题",
+              "fieldType": "开关",
+              "required": false
+            },
+            {
+              "fieldName": "是否创建新措施",
+              "fieldType": "开关",
+              "required": false
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-07-004",
+          "storyName": "D5步骤完结",
+          "asA": "系统用户",
+          "iWantTo": "完成D5阶段",
+          "soThat": "进入D6阶段",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Step completion blocked when DRAFT measures exist",
+              "given": "存在未验证的永久措施",
+              "when": "user clicks \"步骤完结\" button and problem has measures with status DRAFT",
+              "then": "system blocks step completion",
+              "and": [
+                "displays error message listing unverified measures"
+              ]
+            },
+            {
+              "scenario": "Step completion succeeds and flows to D6",
+              "given": "所有措施已验证且至少1个通过",
+              "when": "user clicks \"步骤完结\" button and at least one VERIFIED_PASS measure exists",
+              "then": "system validates completion criteria",
+              "and": [
+                "updates problem current_stage to \"D6\" if no approval required",
+                "automatically navigates to the D6 page"
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [
+            {
+              "ruleId": "VR-07-008",
+              "field": "永久措施验证",
+              "rule": "所有措施必须验证且至少1个通过",
+              "errorMessage": "存在未验证的永久措施,请先验证!;没有验证通过的永久措施,请检查!"
+            }
+          ],
+          "dataFields": [],
+          "inputExamples": {},
+          "priority": "H"
+        }
+      ]
+    },
+    {
+      "moduleId": "module-08",
+      "moduleName": "D6实施永久措施",
+      "moduleCode": "d6-implement-permanent-corrective-actions",
+      "prdReference": "6.1.8",
+      "userStories": [
+        {
+          "storyId": "US-08-001",
+          "storyName": "根据D4D5适配布局",
+          "asA": "系统用户",
+          "iWantTo": "查看适配的实施界面",
+          "soThat": "正确实施永久措施",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Problem workflow has no D4 and no D5 steps",
+              "given": "问题工作流不包含D4和D5步骤",
+              "when": "user navigates to D6 page",
+              "then": "system displays single implementation area (no root cause association)",
+              "and": [
+                "user can fill improvement_measure directly"
+              ]
+            },
+            {
+              "scenario": "Problem workflow has D5 steps",
+              "given": "问题已完成D5步骤",
+              "when": "user navigates to D6 page",
+              "then": "system displays tabs (one per verified permanent measure)",
+              "and": [
+                "tab shows improvement_measure and risk_analysis as read-only from D5",
+                "user fills implementation details"
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [],
+          "dataFields": [],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-08-002",
+          "storyName": "实施记录创建",
+          "asA": "系统用户",
+          "iWantTo": "创建实施记录",
+          "soThat": "记录措施实施情况",
+          "acceptanceCriteria": [
+            {
+              "scenario": "User creates implementation record",
+              "given": "用户在D6页面",
+              "when": "user fills required fields (improvement_measure, implementation_start_time, implementation_end_time, is_completed) and clicks 【保存】",
+              "then": "system validates all required fields",
+              "and": [
+                "creates PermanentMeasureImplementation record",
+                "changes button to 【编辑】"
+              ]
+            },
+            {
+              "scenario": "Start time becomes immutable after first save",
+              "given": "实施记录已保存",
+              "when": "user enters edit mode again",
+              "then": "implementation_start_time field is read-only (grayed out)",
+              "and": [
+                "user cannot modify implementation_start_time"
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [
+            {
+              "ruleId": "VR-08-001",
+              "field": "改善措施",
+              "rule": "必填,最多2000字符",
+              "errorMessage": ""
+            },
+            {
+              "ruleId": "VR-08-002",
+              "field": "实施开始时间",
+              "rule": "必选",
+              "errorMessage": ""
+            },
+            {
+              "ruleId": "VR-08-003",
+              "field": "实施结束时间",
+              "rule": "不能早于开始时间",
+              "errorMessage": "实施结束时间不能早于开始时间"
+            },
+            {
+              "ruleId": "VR-08-004",
+              "field": "是否完成",
+              "rule": "需选择结束时间",
+              "errorMessage": "请先选择实施结束时间"
+            }
+          ],
+          "dataFields": [
+            {
+              "fieldName": "改善措施",
+              "fieldType": "多行文本框",
+              "required": true,
+              "maxLength": 2000
+            },
+            {
+              "fieldName": "实施开始时间",
+              "fieldType": "日期时间选择框",
+              "required": true
+            },
+            {
+              "fieldName": "实施结束时间",
+              "fieldType": "日期时间选择框",
+              "required": false
+            },
+            {
+              "fieldName": "是否完成",
+              "fieldType": "开关",
+              "required": false
+            },
+            {
+              "fieldName": "备注",
+              "fieldType": "多行文本框",
+              "required": false,
+              "maxLength": 2000
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-08-003",
+          "storyName": "批量实施",
+          "asA": "系统用户",
+          "iWantTo": "批量实施多个永久措施",
+          "soThat": "提高操作效率",
+          "acceptanceCriteria": [
+            {
+              "scenario": "User navigates to batch implementation page",
+              "given": "问题有D4和D5步骤",
+              "when": "user clicks 【批量实施】 button",
+              "then": "system navigates to batch implementation page"
+            },
+            {
+              "scenario": "User saves batch implementation",
+              "given": "用户选择了3个措施并填写共享字段",
+              "when": "user clicks 【保存】 button",
+              "then": "system creates 3 PermanentMeasureImplementation records",
+              "and": [
+                "all 3 records share same batch_id",
+                "system navigates back to D6 main page"
+              ]
+            }
+          ],
+          "businessRules": [
+            {
+              "ruleId": "BR-08-001",
+              "description": "批量实施操作为原子性事务"
+            }
+          ],
+          "validationRules": [],
+          "dataFields": [],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-08-004",
+          "storyName": "D6步骤完结",
+          "asA": "系统用户",
+          "iWantTo": "完成D6阶段",
+          "soThat": "进入D7阶段",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Step completion validation for mode 1 (no D4, no D5)",
+              "given": "问题无D4和D5步骤",
+              "when": "user clicks 【步骤完结】 with at least 1 completed implementation record",
+              "then": "system validates successfully",
+              "and": [
+                "problem current_stage updates to next stage"
+              ]
+            },
+            {
+              "scenario": "Step completion validation for mode 3 (has D5)",
+              "given": "问题有D5步骤",
+              "when": "user clicks 【步骤完结】 but 1 measure has implementation record with is_completed=false",
+              "then": "system displays error highlighting the uncompleted measure",
+              "and": [
+                "prevents step completion"
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [
+            {
+              "ruleId": "VR-08-005",
+              "field": "实施记录",
+              "rule": "根据模式要求所有必须的措施都已实施完成",
+              "errorMessage": "请至少创建一条实施记录;所有实施记录必须标记为已完成;永久措施尚未实施完成"
+            }
+          ],
+          "dataFields": [],
+          "inputExamples": {},
+          "priority": "H"
+        }
+      ]
+    },
+    {
+      "moduleId": "module-09",
+      "moduleName": "D7预防再发生",
+      "moduleCode": "d7-prevent-recurrence",
+      "prdReference": "6.1.9",
+      "userStories": [
+        {
+          "storyId": "US-09-001",
+          "storyName": "检测布局模式",
+          "asA": "系统用户",
+          "iWantTo": "查看适配的预防界面",
+          "soThat": "正确填写预防措施",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Problem with D5 step displays change file mode",
+              "given": "问题类型工作流包含D5步骤",
+              "when": "user navigates to D7 page",
+              "then": "system displays Mode A (change file tabs interface)",
+              "and": [
+                "shows horizontal tabs container",
+                "shows 【新增】 button to add change file tabs"
+              ]
+            },
+            {
+              "scenario": "Problem without D5 step displays simple text mode",
+              "given": "问题类型工作流不包含D5步骤",
+              "when": "user navigates to D7 page",
+              "then": "system displays Mode B (simple text interface)",
+              "and": [
+                "shows single text area labeled \"预防再发生描述内容\""
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [],
+          "dataFields": [],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-09-002",
+          "storyName": "变更文件管理(模式A)",
+          "asA": "系统用户",
+          "iWantTo": "管理变更文件",
+          "soThat": "记录预防措施变更",
+          "acceptanceCriteria": [
+            {
+              "scenario": "User creates new change file tab",
+              "given": "用户在模式A",
+              "when": "user clicks 【新增】 button",
+              "then": "system creates a new tab with default name \"变更文件\"",
+              "and": [
+                "form shows empty fields"
+              ]
+            },
+            {
+              "scenario": "User saves change file with valid data",
+              "given": "用户填写了变更文件信息",
+              "when": "user fills all fields and clicks 【保存】",
+              "then": "system creates a ChangeFile record",
+              "and": [
+                "updates tab name to file_after_change value",
+                "creates ChangeFileMeasureRelation records"
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [
+            {
+              "ruleId": "VR-09-001",
+              "field": "关联永久措施",
+              "rule": "至少关联1个永久措施",
+              "errorMessage": "至少需要关联1个永久措施"
+            },
+            {
+              "ruleId": "VR-09-002",
+              "field": "完成日期",
+              "rule": "是否完成为是时必填",
+              "errorMessage": "【是否完成】为是时,【完成日期】为必填项,请填写!"
+            }
+          ],
+          "dataFields": [
+            {
+              "fieldName": "变更前文件",
+              "fieldType": "文本框",
+              "required": false
+            },
+            {
+              "fieldName": "变更后文件",
+              "fieldType": "文本框",
+              "required": false
+            },
+            {
+              "fieldName": "变更内容",
+              "fieldType": "多行文本框",
+              "required": false
+            },
+            {
+              "fieldName": "关联永久措施",
+              "fieldType": "级联多选框",
+              "required": true
+            },
+            {
+              "fieldName": "是否完成",
+              "fieldType": "开关",
+              "required": false,
+              "defaultValue": "否"
+            },
+            {
+              "fieldName": "完成日期",
+              "fieldType": "日期选择框",
+              "required": false
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-09-003",
+          "storyName": "简单文本输入(模式B)",
+          "asA": "系统用户",
+          "iWantTo": "填写预防描述",
+          "soThat": "记录预防措施",
+          "acceptanceCriteria": [
+            {
+              "scenario": "User saves prevention text",
+              "given": "用户在模式B",
+              "when": "user enters text and clicks 【保存】",
+              "then": "system updates the quality_problem record d7_prevention_text field",
+              "and": [
+                "shows success message"
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [
+            {
+              "ruleId": "VR-09-003",
+              "field": "预防再发生描述内容",
+              "rule": "最多2000字符",
+              "errorMessage": "预防再发生描述内容不能超过2000字符"
+            }
+          ],
+          "dataFields": [
+            {
+              "fieldName": "预防再发生描述内容",
+              "fieldType": "多行文本框",
+              "required": false,
+              "maxLength": 2000
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-09-004",
+          "storyName": "D7步骤完结",
+          "asA": "小组领导者",
+          "iWantTo": "完成D7阶段",
+          "soThat": "进入D8阶段",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Mode A step completion requires at least one change file",
+              "given": "用户在模式A",
+              "when": "team leader clicks 【步骤完结】 with at least 1 change file",
+              "then": "system validates at least 1 change file exists",
+              "and": [
+                "problem flows to next stage"
+              ]
+            },
+            {
+              "scenario": "Mode B step completion has no validation",
+              "given": "用户在模式B",
+              "when": "team leader clicks 【步骤完结】 even with empty text",
+              "then": "system allows step completion",
+              "and": [
+                "problem flows to next stage"
+              ]
+            },
+            {
+              "scenario": "Only team leader can complete step",
+              "given": "当前用户不是小组领导者",
+              "when": "user views D7 page",
+              "then": "【步骤完结】 button is disabled or hidden"
+            }
+          ],
+          "businessRules": [
+            {
+              "ruleId": "BR-09-001",
+              "description": "仅小组领导者可执行步骤完结操作"
+            }
+          ],
+          "validationRules": [
+            {
+              "ruleId": "VR-09-004",
+              "field": "变更文件",
+              "rule": "模式A至少创建1个变更文件",
+              "errorMessage": "请至少创建1个变更文件"
+            },
+            {
+              "ruleId": "VR-09-005",
+              "field": "步骤完结权限",
+              "rule": "仅小组领导者可操作",
+              "errorMessage": "仅小组领导者可执行步骤完结操作"
+            }
+          ],
+          "dataFields": [],
+          "inputExamples": {},
+          "priority": "H"
+        }
+      ]
+    },
+    {
+      "moduleId": "module-10",
+      "moduleName": "D8结项",
+      "moduleCode": "d8-close-problem",
+      "prdReference": "6.1.10",
+      "userStories": [
+        {
+          "storyId": "US-10-001",
+          "storyName": "结项数据管理",
+          "asA": "小组领导者",
+          "iWantTo": "填写结项总结",
+          "soThat": "完成问题闭环",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Initialize D8 closure data",
+              "given": "D1-D7阶段已完成且当前用户是小组领导者",
+              "when": "user navigates to D8 page",
+              "then": "system loads problem information and D1-D8 progress bar",
+              "and": [
+                "displays closure summary text area (empty, max 2000 chars)",
+                "displays attachment upload section (empty, max 10 files)"
+              ]
+            },
+            {
+              "scenario": "Prevent access for incomplete stages",
+              "given": "D5或D6阶段未完成",
+              "when": "user attempts to navigate to D8 page",
+              "then": "system displays error: \"D1-D7步骤未完成,无法访问结项页面\"",
+              "and": [
+                "system redirects to problem detail page"
+              ]
+            },
+            {
+              "scenario": "Prevent access for non-team-leaders",
+              "given": "当前用户不是小组领导者",
+              "when": "user attempts to navigate to D8 page",
+              "then": "system displays error: \"无权限访问结项页面,仅小组领导者可访问\"",
+              "and": [
+                "backend returns 403 Forbidden"
+              ]
+            }
+          ],
+          "businessRules": [
+            {
+              "ruleId": "BR-10-001",
+              "description": "仅小组领导者可访问D8结项页面"
+            }
+          ],
+          "validationRules": [],
+          "dataFields": [],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-10-002",
+          "storyName": "结项总结填写",
+          "asA": "小组领导者",
+          "iWantTo": "填写结项总结",
+          "soThat": "记录问题处理总结",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Fill closure summary within limit",
+              "given": "用户在D8页面",
+              "when": "user types closure summary with 1500 characters and clicks \"保存\"",
+              "then": "system saves closure summary to quality_problem.d8_closure_summary field",
+              "and": [
+                "displays success notification"
+              ]
+            },
+            {
+              "scenario": "Allow empty closure summary",
+              "given": "用户在D8页面",
+              "when": "user clicks \"提交\" without filling summary",
+              "then": "system allows submission (summary is optional)",
+              "and": [
+                "submission proceeds to workflow trigger"
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [
+            {
+              "ruleId": "VR-10-001",
+              "field": "结项总结",
+              "rule": "最多2000字符",
+              "errorMessage": "结项总结不能超过2000字符"
+            }
+          ],
+          "dataFields": [
+            {
+              "fieldName": "结项总结",
+              "fieldType": "多行文本框",
+              "required": false,
+              "maxLength": 2000
+            }
+          ],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-10-003",
+          "storyName": "附件管理",
+          "asA": "小组领导者",
+          "iWantTo": "上传结项附件",
+          "soThat": "补充结项证据",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Upload single attachment successfully",
+              "given": "用户在D8页面",
+              "when": "user uploads file \"结项报告.docx\" (1.5 MB)",
+              "then": "system validates file type and size",
+              "and": [
+                "saves file to local path",
+                "appends metadata to quality_problem.d8_attachments JSON array",
+                "displays attachment in list"
+              ]
+            },
+            {
+              "scenario": "Reject unsupported file type",
+              "given": "用户尝试上传不支持的文件类型",
+              "when": "user attempts to upload \"病毒.exe\"",
+              "then": "system blocks upload",
+              "and": [
+                "displays error message listing allowed types"
+              ]
+            },
+            {
+              "scenario": "Allow submission without attachments",
+              "given": "附件列表为空",
+              "when": "user clicks \"提交\"",
+              "then": "system allows submission (attachments are optional)"
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [
+            {
+              "ruleId": "VR-10-002",
+              "field": "附件类型",
+              "rule": "仅支持.doc, .docx, .pdf, .jpg, .jpeg, .png, .gif, .bmp",
+              "errorMessage": "文件类型不支持,仅支持: .doc, .docx, .pdf, .jpg, .jpeg, .png, .gif, .bmp"
+            },
+            {
+              "ruleId": "VR-10-003",
+              "field": "附件大小",
+              "rule": "单个文件最大20MB",
+              "errorMessage": "单个文件大小不能超过20 MB"
+            },
+            {
+              "ruleId": "VR-10-004",
+              "field": "附件数量",
+              "rule": "最多10个附件",
+              "errorMessage": "最多上传10个附件,当前已达上限"
+            }
+          ],
+          "dataFields": [],
+          "inputExamples": {},
+          "priority": "H"
+        },
+        {
+          "storyId": "US-10-004",
+          "storyName": "D8提交和工作流",
+          "asA": "小组领导者",
+          "iWantTo": "提交结项",
+          "soThat": "完成问题处理",
+          "acceptanceCriteria": [
+            {
+              "scenario": "Submit D8 closure without approval node",
+              "given": "问题类型无审批节点",
+              "when": "user clicks \"提交\" and confirms",
+              "then": "system validates D1-D7 completion",
+              "and": [
+                "saves D8 data to quality_problem table",
+                "updates processing_status to \"已完成\"",
+                "displays success notification"
+              ]
+            },
+            {
+              "scenario": "Submit D8 closure with approval node",
+              "given": "问题类型有审批节点",
+              "when": "user clicks \"提交\" and confirms",
+              "then": "system updates current_stage to \"D8审批\"",
+              "and": [
+                "triggers approval workflow",
+                "sends notification to approvers"
+              ]
+            },
+            {
+              "scenario": "Prevent duplicate submission",
+              "given": "D8已提交",
+              "when": "user attempts to click \"提交\" again",
+              "then": "system disables \"提交\" button",
+              "and": [
+                "displays error if user bypasses UI"
+              ]
+            }
+          ],
+          "businessRules": [],
+          "validationRules": [
+            {
+              "ruleId": "VR-10-005",
+              "field": "D1-D7步骤",
+              "rule": "必须全部完成",
+              "errorMessage": "D1-D7步骤未完成,无法结项"
+            },
+            {
+              "ruleId": "VR-10-006",
+              "field": "D8提交状态",
+              "rule": "不可重复提交",
+              "errorMessage": "D8步骤已完结,无法重复提交"
+            }
+          ],
+          "dataFields": [],
+          "inputExamples": {},
+          "priority": "H"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "generatedDate": "2025-12-31",
+    "sourceDocuments": {
+      "prd": "/root/ai-ready/userstory/prd/HD230005V1.0.0-D9.2-QMS-PCLM需求规格说明书(1).md",
+      "specs": [
+        "/root/ai-ready/userstory/spec/problem-type-management/spec.md",
+        "/root/ai-ready/userstory/spec/quality-problem-management/spec.md",
+        "/root/ai-ready/userstory/spec/d1-team-formation/spec.md",
+        "/root/ai-ready/userstory/spec/d2-problem-description/spec.md",
+        "/root/ai-ready/userstory/spec/d3-interim-containment-actions/spec.md",
+        "/root/ai-ready/userstory/spec/d4-root-cause-analysis/spec.md",
+        "/root/ai-ready/userstory/spec/d5-select-verify-corrective-actions/spec.md",
+        "/root/ai-ready/userstory/spec/d6-implement-permanent-corrective-actions/spec.md",
+        "/root/ai-ready/userstory/spec/d7-prevent-recurrence/spec.md",
+        "/root/ai-ready/userstory/spec/d8-close-problem/spec.md"
+      ]
+    },
+    "notes": [
+      "所有验收标准从spec文件中提取",
+      "所有业务规则和字典值从PRD中提取",
+      "输入示例仅使用PRD明确给出的值",
+      "未在PRD中明确说明的业务数据留空,不进行编造",
+      "严格遵循零脑补、零推测、零编造原则"
+    ]
+  }
+}

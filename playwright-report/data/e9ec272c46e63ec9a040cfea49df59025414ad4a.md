@@ -1,0 +1,259 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e4]:
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: "问题类型编码:"
+        - textbox "问题类型编码:" [ref=e16]:
+          - /placeholder: 请输入问题类型编码
+      - generic [ref=e17]:
+        - generic [ref=e18]: "问题类型名称:"
+        - textbox "问题类型名称:" [ref=e23]:
+          - /placeholder: 请输入问题类型名称
+      - generic [ref=e24]:
+        - generic [ref=e25]: "解决方式:"
+        - combobox [ref=e30] [cursor=pointer]:
+          - generic [ref=e32]: 请选择解决方式
+          - 'generic "图标: down" [ref=e34]':
+            - img [ref=e35]
+      - generic [ref=e37]:
+        - generic [ref=e38]: "是否可用:"
+        - combobox [ref=e43] [cursor=pointer]:
+          - generic [ref=e45]: 请选择
+          - 'generic "图标: down" [ref=e47]':
+            - img [ref=e48]
+    - generic [ref=e50]:
+      - 'button "图标: search 查询" [ref=e51] [cursor=pointer]':
+        - 'generic "图标: search"':
+          - img
+        - generic: 查询
+      - button "重 置" [ref=e52] [cursor=pointer]:
+        - generic: 重 置
+  - generic [ref=e53]:
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - generic [ref=e57]: 
+        - strong [ref=e58]: 问题类型列表
+      - generic [ref=e59]:
+        - button " 新增" [ref=e60] [cursor=pointer]:
+          - generic: 
+          - generic: 新增
+        - 'button "图标: reload" [ref=e63] [cursor=pointer]':
+          - 'generic "图标: reload"':
+            - img
+    - generic [ref=e64]:
+      - grid [ref=e67]:
+        - row "序号 问题类型编码 问题类型名称 解决方式 备注 是否可用 创建时间 创建人 更新时间 更新人 操作" [ref=e68]:
+          - columnheader "序号" [ref=e69]:
+            - generic [ref=e72]: 序号
+          - columnheader "问题类型编码" [ref=e73]:
+            - generic [ref=e76]: 问题类型编码
+          - columnheader "问题类型名称" [ref=e77]:
+            - generic [ref=e80]: 问题类型名称
+          - columnheader "解决方式" [ref=e81]:
+            - generic [ref=e84]: 解决方式
+          - columnheader "备注" [ref=e85]:
+            - generic [ref=e88]: 备注
+          - columnheader "是否可用" [ref=e89]:
+            - generic [ref=e92]: 是否可用
+          - columnheader "创建时间" [ref=e93]:
+            - generic [ref=e96]: 创建时间
+          - columnheader "创建人" [ref=e97]:
+            - generic [ref=e100]: 创建人
+          - columnheader "更新时间" [ref=e101]:
+            - generic [ref=e104]: 更新时间
+          - columnheader "更新人" [ref=e105]:
+            - generic [ref=e108]: 更新人
+          - columnheader
+          - columnheader "操作" [ref=e110]:
+            - generic [ref=e113]: 操作
+        - row "1 QT00001 标准8D问题类型 8D 适用于复杂质量问题的标准8D流程，包含完整的团队协作和根因分析。适用于制造过程中的系统性质量问题，需... 2024-11-15 09:30:00 张三 2024-11-20 14:25:00 李四 详情查看 复制 删除" [ref=e114]:
+          - gridcell "1" [ref=e115]
+          - gridcell "QT00001" [ref=e116]
+          - gridcell "标准8D问题类型" [ref=e117]
+          - gridcell "8D" [ref=e118]
+          - gridcell "适用于复杂质量问题的标准8D流程，包含完整的团队协作和根因分析。适用于制造过程中的系统性质量问题，需..." [ref=e119]:
+            - generic [ref=e120]: 适用于复杂质量问题的标准8D流程，包含完整的团队协作和根因分析。适用于制造过程中的系统性质量问题，需...
+          - gridcell [ref=e121]:
+            - switch [checked] [ref=e122] [cursor=pointer]
+          - gridcell "2024-11-15 09:30:00" [ref=e123]
+          - gridcell "张三" [ref=e124]
+          - gridcell "2024-11-20 14:25:00" [ref=e125]
+          - gridcell "李四" [ref=e126]
+          - gridcell
+          - gridcell "详情查看 复制 删除" [ref=e127]:
+            - text: 详情查看
+            - separator [ref=e128]
+            - text: 复制
+            - separator [ref=e129]
+            - text: 删除
+        - row "2 QT00002 精益改善问题类型 精益 用于精益生产的持续改善活动，关注浪费消除和流程优化，适用于生产效率提升项目。 2024-10-20 10:15:00 王五 2024-11-18 16:30:00 赵六 详情查看 复制 删除" [ref=e130]:
+          - gridcell "2" [ref=e131]
+          - gridcell "QT00002" [ref=e132]
+          - gridcell "精益改善问题类型" [ref=e133]
+          - gridcell "精益" [ref=e134]
+          - gridcell "用于精益生产的持续改善活动，关注浪费消除和流程优化，适用于生产效率提升项目。" [ref=e135]
+          - gridcell [ref=e136]:
+            - switch [checked] [ref=e137] [cursor=pointer]
+          - gridcell "2024-10-20 10:15:00" [ref=e138]
+          - gridcell "王五" [ref=e139]
+          - gridcell "2024-11-18 16:30:00" [ref=e140]
+          - gridcell "赵六" [ref=e141]
+          - gridcell
+          - gridcell "详情查看 复制 删除" [ref=e142]:
+            - text: 详情查看
+            - separator [ref=e143]
+            - text: 复制
+            - separator [ref=e144]
+            - text: 删除
+        - row "3 QT00003 简单问题解决类型 简单 用于快速解决简单、明确的质量问题，无需复杂的根因分析流程，适用于单一原因的小问题。 2024-09-10 08:00:00 李四 2024-09-10 08:00:00 李四 详情查看 复制 删除" [ref=e145]:
+          - gridcell "3" [ref=e146]
+          - gridcell "QT00003" [ref=e147]
+          - gridcell "简单问题解决类型" [ref=e148]
+          - gridcell "简单" [ref=e149]
+          - gridcell "用于快速解决简单、明确的质量问题，无需复杂的根因分析流程，适用于单一原因的小问题。" [ref=e150]
+          - gridcell [ref=e151]:
+            - switch [checked] [ref=e152] [cursor=pointer]
+          - gridcell "2024-09-10 08:00:00" [ref=e153]
+          - gridcell "李四" [ref=e154]
+          - gridcell "2024-09-10 08:00:00" [ref=e155]
+          - gridcell "李四" [ref=e156]
+          - gridcell
+          - gridcell "详情查看 复制 删除" [ref=e157]:
+            - text: 详情查看
+            - separator [ref=e158]
+            - text: 复制
+            - separator [ref=e159]
+            - text: 删除
+        - row "4 QT00004 已禁用的问题类型示例 8D 此问题类型已被禁用，用于展示禁用状态下的数据显示效果。禁用后不可用于创建新的质量问题。 2024-08-05 14:30:00 张三 2024-11-22 10:00:00 管理员 详情查看 复制 删除" [ref=e160]:
+          - gridcell "4" [ref=e161]
+          - gridcell "QT00004" [ref=e162]
+          - gridcell "已禁用的问题类型示例" [ref=e163]
+          - gridcell "8D" [ref=e164]
+          - gridcell "此问题类型已被禁用，用于展示禁用状态下的数据显示效果。禁用后不可用于创建新的质量问题。" [ref=e165]
+          - gridcell [ref=e166]:
+            - switch [ref=e167] [cursor=pointer]
+          - gridcell "2024-08-05 14:30:00" [ref=e168]
+          - gridcell "张三" [ref=e169]
+          - gridcell "2024-11-22 10:00:00" [ref=e170]
+          - gridcell "管理员" [ref=e171]
+          - gridcell
+          - gridcell "详情查看 复制 删除" [ref=e172]:
+            - text: 详情查看
+            - separator [ref=e173]
+            - text: 复制
+            - separator [ref=e174]
+            - text: 删除
+        - row "5 QT00005 完整8D流程示例 8D 包含完整D1-D8步骤的标准8D流程，每个步骤都配置了审批节点和扩展字段，用于大型系统性质量问题。 2024-07-01 09:00:00 管理员 2024-10-15 11:45:00 管理员 详情查看 复制 删除" [ref=e175]:
+          - gridcell "5" [ref=e176]
+          - gridcell "QT00005" [ref=e177]
+          - gridcell "完整8D流程示例" [ref=e178]
+          - gridcell "8D" [ref=e179]
+          - gridcell "包含完整D1-D8步骤的标准8D流程，每个步骤都配置了审批节点和扩展字段，用于大型系统性质量问题。" [ref=e180]
+          - gridcell [ref=e181]:
+            - switch [checked] [ref=e182] [cursor=pointer]
+          - gridcell "2024-07-01 09:00:00" [ref=e183]
+          - gridcell "管理员" [ref=e184]
+          - gridcell "2024-10-15 11:45:00" [ref=e185]
+          - gridcell "管理员" [ref=e186]
+          - gridcell
+          - gridcell "详情查看 复制 删除" [ref=e187]:
+            - text: 详情查看
+            - separator [ref=e188]
+            - text: 复制
+            - separator [ref=e189]
+            - text: 删除
+        - row "6 QT00006 紧急质量问题处理 8D 用于紧急质量问题的快速响应和处理，包含临时措施和永久纠正措施，适用于客户投诉和重大质量事故。 2024-12-01 15:20:00 赵六 2024-12-10 09:15:00 赵六 详情查看 复制 删除" [ref=e190]:
+          - gridcell "6" [ref=e191]
+          - gridcell "QT00006" [ref=e192]
+          - gridcell "紧急质量问题处理" [ref=e193]
+          - gridcell "8D" [ref=e194]
+          - gridcell "用于紧急质量问题的快速响应和处理，包含临时措施和永久纠正措施，适用于客户投诉和重大质量事故。" [ref=e195]
+          - gridcell [ref=e196]:
+            - switch [checked] [ref=e197] [cursor=pointer]
+          - gridcell "2024-12-01 15:20:00" [ref=e198]
+          - gridcell "赵六" [ref=e199]
+          - gridcell "2024-12-10 09:15:00" [ref=e200]
+          - gridcell "赵六" [ref=e201]
+          - gridcell
+          - gridcell "详情查看 复制 删除" [ref=e202]:
+            - text: 详情查看
+            - separator [ref=e203]
+            - text: 复制
+            - separator [ref=e204]
+            - text: 删除
+        - row "7 QT00007 供应商质量问题 精益 专门用于处理供应商来料质量问题，需要与供应商协同改善，包含供应商评估和改善计划。 2024-11-25 10:30:00 王五 2024-12-05 14:20:00 李四 详情查看 复制 删除" [ref=e205]:
+          - gridcell "7" [ref=e206]
+          - gridcell "QT00007" [ref=e207]
+          - gridcell "供应商质量问题" [ref=e208]
+          - gridcell "精益" [ref=e209]
+          - gridcell "专门用于处理供应商来料质量问题，需要与供应商协同改善，包含供应商评估和改善计划。" [ref=e210]
+          - gridcell [ref=e211]:
+            - switch [checked] [ref=e212] [cursor=pointer]
+          - gridcell "2024-11-25 10:30:00" [ref=e213]
+          - gridcell "王五" [ref=e214]
+          - gridcell "2024-12-05 14:20:00" [ref=e215]
+          - gridcell "李四" [ref=e216]
+          - gridcell
+          - gridcell "详情查看 复制 删除" [ref=e217]:
+            - text: 详情查看
+            - separator [ref=e218]
+            - text: 复制
+            - separator [ref=e219]
+            - text: 删除
+        - row "8 QT00008 客户投诉处理 8D 专用于处理客户投诉的质量问题，需要快速响应和闭环管理，确保客户满意度。包含客户沟通记录和反馈机制。 2024-10-05 11:00:00 张三 2024-11-30 16:45:00 赵六 详情查看 复制 删除" [ref=e220]:
+          - gridcell "8" [ref=e221]
+          - gridcell "QT00008" [ref=e222]
+          - gridcell "客户投诉处理" [ref=e223]
+          - gridcell "8D" [ref=e224]
+          - gridcell "专用于处理客户投诉的质量问题，需要快速响应和闭环管理，确保客户满意度。包含客户沟通记录和反馈机制。" [ref=e225]
+          - gridcell [ref=e226]:
+            - switch [checked] [ref=e227] [cursor=pointer]
+          - gridcell "2024-10-05 11:00:00" [ref=e228]
+          - gridcell "张三" [ref=e229]
+          - gridcell "2024-11-30 16:45:00" [ref=e230]
+          - gridcell "赵六" [ref=e231]
+          - gridcell
+          - gridcell "详情查看 复制 删除" [ref=e232]:
+            - text: 详情查看
+            - separator [ref=e233]
+            - text: 复制
+            - separator [ref=e234]
+            - text: 删除
+        - row "9 QT00009 待删除测试流程 8D 用于测试删除功能的问题类型 2024-12-15 10:00:00 测试用户 2024-12-15 10:00:00 测试用户 详情查看 复制 删除" [ref=e235]:
+          - gridcell "9" [ref=e236]
+          - gridcell "QT00009" [ref=e237]
+          - gridcell "待删除测试流程" [ref=e238]
+          - gridcell "8D" [ref=e239]
+          - gridcell "用于测试删除功能的问题类型" [ref=e240]
+          - gridcell [ref=e241]:
+            - switch [checked] [ref=e242] [cursor=pointer]
+          - gridcell "2024-12-15 10:00:00" [ref=e243]
+          - gridcell "测试用户" [ref=e244]
+          - gridcell "2024-12-15 10:00:00" [ref=e245]
+          - gridcell "测试用户" [ref=e246]
+          - gridcell
+          - gridcell "详情查看 复制 删除" [ref=e247]:
+            - text: 详情查看
+            - separator [ref=e248]
+            - text: 复制
+            - separator [ref=e249]
+            - text: 删除
+      - list [ref=e251]:
+        - listitem [ref=e252]: 当前 1-9 条 共 9 条 记录
+        - listitem "上一页" [ref=e253]:
+          - 'generic "图标: left" [ref=e255]':
+            - img [ref=e256]
+        - listitem "1" [ref=e258] [cursor=pointer]:
+          - generic [ref=e259]: "1"
+        - listitem "下一页" [ref=e260]:
+          - 'generic "图标: right" [ref=e262]':
+            - img [ref=e263]
+        - listitem [ref=e265]:
+          - combobox [ref=e267] [cursor=pointer]:
+            - generic "20 条/页" [ref=e269]
+            - 'generic "图标: down" [ref=e271]':
+              - img [ref=e272]
+```

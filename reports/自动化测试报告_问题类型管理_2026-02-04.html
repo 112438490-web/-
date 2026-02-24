@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>自动化测试报告 - 问题类型管理</title>
+    <style>
+      :root {
+        --bg: #f6f7fb;
+        --card: #ffffff;
+        --text: #1f2328;
+        --muted: #6b7280;
+        --primary: #1d4ed8;
+        --success: #16a34a;
+        --danger: #dc2626;
+        --border: #e5e7eb;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+      }
+      .container {
+        max-width: 1200px;
+        margin: 24px auto 64px;
+        padding: 0 20px;
+      }
+      .title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .subtitle {
+        color: var(--muted);
+        margin-bottom: 18px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+      }
+      .card h3 {
+        font-size: 14px;
+        color: var(--muted);
+        margin: 0 0 8px;
+      }
+      .card .value {
+        font-size: 26px;
+        font-weight: 700;
+      }
+      .pill {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 12px;
+        color: #fff;
+        background: var(--danger);
+      }
+      .section {
+        margin-top: 22px;
+      }
+      .section h2 {
+        font-size: 18px;
+        margin: 0 0 12px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      th, td {
+        text-align: left;
+        padding: 12px 10px;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+      th {
+        background: #f3f4f6;
+        font-weight: 600;
+      }
+      tr:last-child td { border-bottom: none; }
+      .muted { color: var(--muted); }
+      .footer {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .links a { color: var(--primary); text-decoration: none; }
+      .links a:hover { text-decoration: underline; }
+      @media (max-width: 900px) {
+        .grid { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 600px) {
+        .grid { grid-template-columns: 1fr; }
+        .title { font-size: 20px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">自动化测试报告 - 问题类型管理</div>
+      <div class="subtitle">问题闭环管理 / SPT-问题类型管理</div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>执行日期</h3>
+          <div class="value">2026-02-04</div>
+        </div>
+        <div class="card">
+          <h3>用例总数</h3>
+          <div class="value">12</div>
+        </div>
+        <div class="card">
+          <h3>通过 / 失败 / 未执行</h3>
+          <div class="value">4 / 1 / 7</div>
+        </div>
+        <div class="card">
+          <h3>结论</h3>
+          <div class="value"><span class="pill">失败</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>执行信息</h2>
+        <table>
+          <tbody>
+            <tr>
+              <th>测试地址</th>
+              <td>http://47.97.84.212:3000/</td>
+            </tr>
+            <tr>
+              <th>执行账号</th>
+              <td>admin / 111111</td>
+            </tr>
+            <tr>
+              <th>工具</th>
+              <td>Playwright（Headless）</td>
+            </tr>
+            <tr>
+              <th>耗时</th>
+              <td>约 3.5 分钟（失败后中止）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>用例明细</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>用例编号</th>
+              <th>用例名称</th>
+              <th>步骤摘要</th>
+              <th>期望结果</th>
+              <th>实际结果</th>
+              <th>结论</th>
+              <th>截图索引</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>TC-PTM-001</td>
+              <td>列表页展示</td>
+              <td>打开列表页，检查关键字段</td>
+              <td>页面正常加载，字段可见</td>
+              <td>符合</td>
+              <td>通过</td>
+              <td class="muted">无（仅失败截图）</td>
+            </tr>
+            <tr>
+              <td>TC-PTM-002</td>
+              <td>新增问题类型（手动编码）</td>
+              <td>新增→填编码/名称/解决方式→保存→返回</td>
+              <td>保存成功并返回列表</td>
+              <td>符合</td>
+              <td>通过</td>
+              <td class="muted">无（仅失败截图）</td>
+            </tr>
+            <tr>
+              <td>TC-PTM-003</td>
+              <td>新增问题类型（自动编码）</td>
+              <td>新增→填名称/解决方式→保存→返回</td>
+              <td>自动生成编码并保存成功</td>
+              <td>符合</td>
+              <td>通过</td>
+              <td class="muted">无（仅失败截图）</td>
+            </tr>
+            <tr>
+              <td>TC-PTM-004</td>
+              <td>必填校验（名称/解决方式）</td>
+              <td>新增→不填必填→保存</td>
+              <td>前端提示必填并阻止提交</td>
+              <td>符合</td>
+              <td>通过</td>
+              <td class="muted">无（仅失败截图）</td>
+            </tr>
+            <tr>
+              <td>TC-PTM-005</td>
+              <td>重复编码校验</td>
+              <td>新增→输入已存在编码→保存</td>
+              <td>提示编码重复，禁止保存</td>
+              <td>未出现重复提示</td>
+              <td>失败</td>
+              <td class="muted">test-results\\tests-problem-type-managem-43a1c--duplicate-code-should-fail</td>
+            </tr>
+            <tr>
+              <td>TC-PTM-006</td>
+              <td>复制问题类型</td>
+              <td>选择最后一行→复制→填新名称→保存</td>
+              <td>复制成功</td>
+              <td>未执行（前置失败）</td>
+              <td>未执行</td>
+              <td class="muted">无</td>
+            </tr>
+            <tr>
+              <td>TC-PTM-007</td>
+              <td>查询（名称/编码）</td>
+              <td>按名称查询→按编码查询</td>
+              <td>返回匹配记录</td>
+              <td>未执行（前置失败）</td>
+              <td>未执行</td>
+              <td class="muted">无</td>
+            </tr>
+            <tr>
+              <td>TC-PTM-008</td>
+              <td>查询无结果空态</td>
+              <td>输入不存在名称→查询</td>
+              <td>显示暂无数据/空态</td>
+              <td>未执行（前置失败）</td>
+              <td>未执行</td>
+              <td class="muted">无</td>
+            </tr>
+            <tr>
+              <td>TC-PTM-009</td>
+              <td>分页与页大小</td>
+              <td>切换每页数量→观察条数</td>
+              <td>每页条数符合设置</td>
+              <td>未执行（前置失败）</td>
+              <td>未执行</td>
+              <td class="muted">无</td>
+            </tr>
+            <tr>
+              <td>TC-PTM-010</td>
+              <td>详情编辑备注</td>
+              <td>详情→编辑→修改备注→保存→返回</td>
+              <td>备注保存成功</td>
+              <td>未执行（前置失败）</td>
+              <td>未执行</td>
+              <td class="muted">无</td>
+            </tr>
+            <tr>
+              <td>TC-PTM-011</td>
+              <td>启用/禁用切换</td>
+              <td>列表行开关切换</td>
+              <td>状态切换成功</td>
+              <td>未执行（前置失败）</td>
+              <td>未执行</td>
+              <td class="muted">无</td>
+            </tr>
+            <tr>
+              <td>TC-PTM-012</td>
+              <td>删除问题类型</td>
+              <td>删除最后两行→确认</td>
+              <td>删除成功</td>
+              <td>未执行（前置失败）</td>
+              <td>未执行</td>
+              <td class="muted">无</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>覆盖范围</h2>
+        <table>
+          <tbody>
+            <tr>
+              <td>列表展示、查询、分页视图（因用例失败后未执行）</td>
+            </tr>
+            <tr>
+              <td>新增（手动/自动编码）、复制、编辑、删除</td>
+            </tr>
+            <tr>
+              <td>启用/禁用切换、校验类用例（部分未执行）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>附件与路径</h2>
+        <div class="card links">
+          <div>HTML 报告（Playwright 原生）：E:\\宝洁\\test3\\playwright-report\\index.html</div>
+          <div>产物目录：E:\\宝洁\\test3\\test-results</div>
+        </div>
+      </div>
+
+      <div class="footer">
+        备注：TC-PTM-005 未出现重复提示导致失败，后续 7 条用例未执行。截图配置为仅失败截图（screenshot: only-on-failure）。
+      </div>
+    </div>
+  </body>
+</html>

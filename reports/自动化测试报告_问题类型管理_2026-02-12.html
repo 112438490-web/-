@@ -1,0 +1,632 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>自动化测试报告 - 问题类型管理</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --warning: #d97706;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at 20% 20%, #eef2ff, #f5f7fb 40%);
+    }
+    .container { max-width: 1200px; margin: 24px auto 64px; padding: 0 20px; }
+    .header {
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: #fff;
+      border-radius: 16px;
+      padding: 24px 28px;
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.25);
+    }
+    .title { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+    .subtitle { opacity: 0.9; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
+    }
+    .card h3 { font-size: 13px; color: var(--muted); margin: 0 0 8px; }
+    .card .value { font-size: 24px; font-weight: 700; }
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--danger);
+    }
+    .section { margin-top: 26px; }
+    .section h2 { font-size: 18px; margin: 0 0 12px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th { background: #f3f4f6; font-weight: 600; }
+    tr:last-child td { border-bottom: none; }
+    .muted { color: var(--muted); }
+    .status-pass { color: var(--success); font-weight: 600; }
+    .status-fail { color: var(--danger); font-weight: 600; }
+    .status-skip { color: var(--warning); font-weight: 600; }
+    .footer { margin-top: 18px; color: var(--muted); font-size: 12px; }
+    .shot {
+      display: inline-block;
+      max-width: 180px;
+      max-height: 120px;
+      margin: 4px 6px 4px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      object-fit: cover;
+      background: #fff;
+    }
+    @media (max-width: 980px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } .title { font-size: 20px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title">自动化测试报告 - 问题类型管理</div>
+      <div class="subtitle">问题闭环管理 / SPT-问题类型管理</div>
+    </div>
+
+    <div class="grid">
+      <div class="card"><h3>执行日期</h3><div class="value">2026-02-12</div></div>
+      <div class="card"><h3>用例总数</h3><div class="value">24</div></div>
+      <div class="card"><h3>通过 / 失败 / 未执行</h3><div class="value">15 / 9 / 0</div></div>
+      <div class="card"><h3>结论</h3><div class="value"><span class="pill">失败</span></div></div>
+    </div>
+
+    <div class="section">
+      <h2>执行信息</h2>
+      <table>
+        <tbody>
+          <tr><th>测试地址</th><td>http://47.97.84.212:3000/</td></tr>
+          <tr><th>执行账号</th><td>admin / 111111</td></tr>
+          <tr><th>工具</th><td>Playwright (无头)</td></tr>
+          <tr><th>开始时间</th><td>2026-02-10 15:54:40</td></tr>
+          <tr><th>结束时间</th><td>2026-02-10 16:03:59</td></tr>
+          <tr><th>总耗时</th><td>9m 8s (累计用例耗时)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>用例明细</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>用例编号</th>
+            <th>用例名称</th>
+            <th>结果</th>
+            <th>耗时</th>
+            <th>开始时间</th>
+            <th>截图</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <td>TC-PTM-001</td>
+              <td>列表页展示与字段校验</td>
+              <td class="status-pass">通过</td>
+              <td>12s</td>
+              <td>2026-02-10 15:54:40</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-ffa0b-ers-and-columns-are-present/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-002</td>
+              <td>默认每页20条</td>
+              <td class="status-pass">通过</td>
+              <td>7s</td>
+              <td>2026-02-10 15:54:53</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-4de98-ent-default-page-size-is-20/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-003</td>
+              <td>筛选(解决方式)</td>
+              <td class="status-fail">失败</td>
+              <td>18s</td>
+              <td>2026-02-10 15:55:00</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-b0f45-filter-by-resolution-method/test-failed-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-004</td>
+              <td>筛选(是否可用)</td>
+              <td class="status-fail">失败</td>
+              <td>22s</td>
+              <td>2026-02-10 15:55:19</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-8cda6-lter-by-availability-status/test-failed-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-005</td>
+              <td>编码模糊查询</td>
+              <td class="status-fail">失败</td>
+              <td>38s</td>
+              <td>2026-02-10 15:55:43</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-e9c1e-search-by-problem-type-code/test-failed-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-006</td>
+              <td>备注悬停显示全文</td>
+              <td class="status-fail">失败</td>
+              <td>51s</td>
+              <td>2026-02-10 15:56:23</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-917b4-rk-shows-full-text-on-hover/test-failed-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-007</td>
+              <td>新增问题类型(手动编码)</td>
+              <td class="status-pass">通过</td>
+              <td>12s</td>
+              <td>2026-02-10 15:57:16</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-b31cf-oblem-type-with-manual-code/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-008</td>
+              <td>新增问题类型(自动编码)</td>
+              <td class="status-pass">通过</td>
+              <td>12s</td>
+              <td>2026-02-10 15:57:29</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-8dd1c-pe-with-auto-generated-code/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-009</td>
+              <td>查询(名称+编码组合)</td>
+              <td class="status-pass">通过</td>
+              <td>8s</td>
+              <td>2026-02-10 15:57:41</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-17c55-h-by-name-and-code-combined/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-010</td>
+              <td>重置查询恢复列表</td>
+              <td class="status-pass">通过</td>
+              <td>7s</td>
+              <td>2026-02-10 15:57:49</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-82621--reset-search-restores-list/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-011</td>
+              <td>删除后刷新不再显示</td>
+              <td class="status-pass">通过</td>
+              <td>16s</td>
+              <td>2026-02-10 15:57:56</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-9b3a7-resh-no-longer-shows-record/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-012</td>
+              <td>编辑备注刷新后保持</td>
+              <td class="status-fail">失败</td>
+              <td>36s</td>
+              <td>2026-02-10 15:58:12</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-088c7-mark-persists-after-refresh/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-013</td>
+              <td>启用/禁用刷新后保持</td>
+              <td class="status-fail">失败</td>
+              <td>9s</td>
+              <td>2026-02-10 15:58:48</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-067b6-able-persists-after-refresh/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-014</td>
+              <td>必填校验(名称、解决方式)</td>
+              <td class="status-pass">通过</td>
+              <td>7s</td>
+              <td>2026-02-10 15:58:57</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-96e28--validation-required-fields/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-015</td>
+              <td>重复编码校验</td>
+              <td class="status-pass">通过</td>
+              <td>9s</td>
+              <td>2026-02-10 15:59:05</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-43a1c--duplicate-code-should-fail/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-016</td>
+              <td>复制问题类型</td>
+              <td class="status-pass">通过</td>
+              <td>22s</td>
+              <td>2026-02-10 15:59:14</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-54b71-anagement-copy-problem-type/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-017</td>
+              <td>查询(名称与编码)</td>
+              <td class="status-pass">通过</td>
+              <td>11s</td>
+              <td>2026-02-10 15:59:35</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-12e33-ent-search-by-name-and-code/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-018</td>
+              <td>查询无结果空态</td>
+              <td class="status-pass">通过</td>
+              <td>7s</td>
+              <td>2026-02-10 15:59:46</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-281f8-o-results-shows-empty-state/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-019</td>
+              <td>分页与每页条数</td>
+              <td class="status-fail">失败</td>
+              <td>1m 7s</td>
+              <td>2026-02-10 15:59:53</td>
+              <td class="muted">无(仅失败截图)</td>
+            </tr>
+            <tr>
+              <td>TC-PTM-020</td>
+              <td>详情编辑备注</td>
+              <td class="status-pass">通过</td>
+              <td>25s</td>
+              <td>2026-02-10 16:01:02</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-432ff--type-remark-in-detail-view/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-021</td>
+              <td>启用/禁用切换</td>
+              <td class="status-pass">通过</td>
+              <td>8s</td>
+              <td>2026-02-10 16:01:27</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-acc78-ement-toggle-enable-disable/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-022</td>
+              <td>删除问题类型</td>
+              <td class="status-pass">通过</td>
+              <td>20s</td>
+              <td>2026-02-10 16:01:36</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-49132-elete-created-problem-types/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-023</td>
+              <td>新增后刷新列表页数据仍存在</td>
+              <td class="status-fail">失败</td>
+              <td>1m 27s</td>
+              <td>2026-02-10 16:01:56</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-9d6f5-ist-page-still-shows-record/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-024</td>
+              <td>新增后刷新查询仍存在</td>
+              <td class="status-fail">失败</td>
+              <td>37s</td>
+              <td>2026-02-10 16:03:22</td>
+              <td class="muted"><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-d79a1-e-then-refresh-retains-data/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>失败用例摘要</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>用例编号</th>
+            <th>用例名称</th>
+            <th>类型</th>
+            <th>错误摘要</th>
+            <th>发生时间</th>
+            <th>证据</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <td>TC-PTM-003</td>
+              <td>筛选(解决方式)</td>
+              <td>失败</td>
+              <td class="muted">错误：断言(locator).包含文本断言(断言ed) failedLocator: locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).first()断言ed substring: &quot;8D&quot;Received string:    &quot;序号问题类型编码问题类型名称解决方式备注是否可用创建时间创建人更新时间更新人操作&quot;Timeout: 10000msCall log:  - 断言 &quot;包含文本断言&quot; with timeout 10000ms  - waiting for locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).first()    14 × locator resolved to &lt;div role=&quot;row&quot; aria-rowindex=&quot;1&quot; class=&quot;rdg-header-row hv-headerRow&quot;&gt;…&lt;/div&gt;       - un断言ed value &quot;序号问题类型编码问题类型名称解决方式备注是否可用创建时间创建人更新时间更新人操作&quot;</td>
+              <td>2026-02-10 15:55:00</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-b0f45-filter-by-resolution-method/test-failed-1.png" alt="screenshot" /><div class="muted">追踪: E:\宝洁\test3\test-results\tests-problem-type-managem-b0f45-filter-by-resolution-method\trace.zip</div><div class="muted">视频: E:\宝洁\test3\test-results\tests-problem-type-managem-b0f45-filter-by-resolution-method\video.webm</div></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-004</td>
+              <td>筛选(是否可用)</td>
+              <td>失败</td>
+              <td class="muted">错误：断言(received).toBe(断言ed) // Object.is equality断言ed: &quot;true&quot;实际: &quot;false&quot;</td>
+              <td>2026-02-10 15:55:19</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-8cda6-lter-by-availability-status/test-failed-1.png" alt="screenshot" /><div class="muted">追踪: E:\宝洁\test3\test-results\tests-problem-type-managem-8cda6-lter-by-availability-status\trace.zip</div><div class="muted">视频: E:\宝洁\test3\test-results\tests-problem-type-managem-8cda6-lter-by-availability-status\video.webm</div></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-005</td>
+              <td>编码模糊查询</td>
+              <td>失败</td>
+              <td class="muted">错误：断言(locator).可见断言() failedLocator: locator(&#39;.ant-table-tbody &gt; tr, .ant-table-row, table tbody tr, .rdg-row, [role=&quot;row&quot;]:not(.rdg-header-row)&#39;).filter({ hasText: &#39;自动化模糊编码-658522&#39; }).first()断言ed: visibleTimeout: 15000msError: element(s) not foundCall log:  - 断言 &quot;可见断言&quot; with timeout 15000ms  - waiting for locator(&#39;.ant-table-tbody &gt; tr, .ant-table-row, table tbody tr, .rdg-row, [role=&quot;row&quot;]:not(.rdg-header-row)&#39;).filter({ hasText: &#39;自动化模糊编码-658522&#39; }).first()</td>
+              <td>2026-02-10 15:55:43</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-e9c1e-search-by-problem-type-code/test-failed-1.png" alt="screenshot" /><div class="muted">追踪: E:\宝洁\test3\test-results\tests-problem-type-managem-e9c1e-search-by-problem-type-code\trace.zip</div><div class="muted">视频: E:\宝洁\test3\test-results\tests-problem-type-managem-e9c1e-search-by-problem-type-code\video.webm</div></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-006</td>
+              <td>备注悬停显示全文</td>
+              <td>失败</td>
+              <td class="muted">错误：断言(locator).可见断言() failedLocator: locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).filter({ hasText: &#39;自动化备注悬浮-601266&#39; }).first()断言ed: visibleTimeout: 30000msError: element(s) not foundCall log:  - 断言 &quot;可见断言&quot; with timeout 30000ms  - waiting for locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).filter({ hasText: &#39;自动化备注悬浮-601266&#39; }).first()</td>
+              <td>2026-02-10 15:56:23</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-917b4-rk-shows-full-text-on-hover/test-failed-1.png" alt="screenshot" /><div class="muted">追踪: E:\宝洁\test3\test-results\tests-problem-type-managem-917b4-rk-shows-full-text-on-hover\trace.zip</div><div class="muted">视频: E:\宝洁\test3\test-results\tests-problem-type-managem-917b4-rk-shows-full-text-on-hover\video.webm</div></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-012</td>
+              <td>编辑备注刷新后保持</td>
+              <td>已知缺陷</td>
+              <td class="muted">超时错误：元素输入: 超时(10000ms).Call log:  - waiting for locator(&#39;textarea#remark, textarea[placeholder*=&quot;备注&quot;], input[placeholder*=&quot;备注&quot;]&#39;).first()</td>
+              <td>2026-02-10 15:58:12</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-088c7-mark-persists-after-refresh/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-013</td>
+              <td>启用/禁用刷新后保持</td>
+              <td>已知缺陷</td>
+              <td class="muted">错误：断言(received).不等断言(断言ed) // Object.is equality断言ed: not &quot;true&quot;</td>
+              <td>2026-02-10 15:58:48</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-067b6-able-persists-after-refresh/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-019</td>
+              <td>分页与每页条数</td>
+              <td>失败</td>
+              <td class="muted">错误：断言(locator).可见断言() failedLocator: locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).first()断言ed: visibleTimeout: 15000msError: element(s) not foundCall log:  - 断言 &quot;可见断言&quot; with timeout 15000ms  - waiting for locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).first()</td>
+              <td>2026-02-10 15:59:53</td>
+              <td>无<div class="muted">追踪: E:\宝洁\test3\test-results\tests-problem-type-managem-68fe2-nt-pagination-and-page-size\trace.zip</div><div class="muted">视频: E:\宝洁\test3\test-results\tests-problem-type-managem-68fe2-nt-pagination-and-page-size\video.webm</div></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-023</td>
+              <td>新增后刷新列表页数据仍存在</td>
+              <td>已知缺陷</td>
+              <td class="muted">超时错误：元素等待: 超时(15000ms).Call log:  - waiting for locator(&#39;input#code, input#name, button:has-text(&quot;查询&quot;), button[h-icon=&quot;add&quot;]&#39;).first() to be visible</td>
+              <td>2026-02-10 16:01:56</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-9d6f5-ist-page-still-shows-record/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-024</td>
+              <td>新增后刷新查询仍存在</td>
+              <td>已知缺陷</td>
+              <td class="muted">错误：断言(locator).可见断言() failedLocator: locator(&#39;.ant-table-tbody &gt; tr, .ant-table-row, table tbody tr, .rdg-row, [role=&quot;row&quot;]:not(.rdg-header-row)&#39;).filter({ hasText: &#39;自动化刷新校验-229550&#39; }).first()断言ed: visibleTimeout: 15000msError: element(s) not foundCall log:  - 断言 &quot;可见断言&quot; with timeout 15000ms  - waiting for locator(&#39;.ant-table-tbody &gt; tr, .ant-table-row, table tbody tr, .rdg-row, [role=&quot;row&quot;]:not(.rdg-header-row)&#39;).filter({ hasText: &#39;自动化刷新校验-229550&#39; }).first()</td>
+              <td>2026-02-10 16:03:22</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-d79a1-e-then-refresh-retains-data/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>日报精简摘要(失败用例)</h2>
+      <div class="card">用于日报：仅保留必要信息便于快速跟进。</div>
+      <table style="margin-top:12px;">
+        <thead>
+          <tr>
+            <th>用例编号</th>
+            <th>用例名称</th>
+            <th>结论</th>
+            <th>一句话原因</th>
+            <th>证据</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <td>TC-PTM-003</td>
+              <td>筛选(解决方式)</td>
+              <td>失败</td>
+              <td class="muted">错误：断言(locator).包含文本断言(断言ed) failedLocator: locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).first()断言ed substring: &quot;8D&quot;Received string:    &quot;序号问题类型编码问题类型名称解决方式备注是否可用创建时间创建人更新时间更新人操作&quot;Timeout: 10000msCall log:  - 断言 &quot;包含文本断言&quot; with timeout 10000ms  - waiting for locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).first()    14 × locator resolved to &lt;div role=&quot;row&quot; aria-rowindex=&quot;1&quot; class=&quot;rdg-header-row hv-headerRow&quot;&gt;…&lt;/div&gt;       - un断言ed value &quot;序号问题类型编码问题类型名称解决方式备注是否可用创建时间创建人更新时间更新人操作&quot;</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-b0f45-filter-by-resolution-method/test-failed-1.png" alt="screenshot" /><div class="muted">Trace: E:\宝洁\test3\test-results\tests-problem-type-managem-b0f45-filter-by-resolution-method\trace.zip</div><div class="muted">视频: E:\宝洁\test3\test-results\tests-problem-type-managem-b0f45-filter-by-resolution-method\video.webm</div></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-004</td>
+              <td>筛选(是否可用)</td>
+              <td>失败</td>
+              <td class="muted">错误：断言(received).toBe(断言ed) // Object.is equality断言ed: &quot;true&quot;实际: &quot;false&quot;</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-8cda6-lter-by-availability-status/test-failed-1.png" alt="screenshot" /><div class="muted">Trace: E:\宝洁\test3\test-results\tests-problem-type-managem-8cda6-lter-by-availability-status\trace.zip</div><div class="muted">视频: E:\宝洁\test3\test-results\tests-problem-type-managem-8cda6-lter-by-availability-status\video.webm</div></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-005</td>
+              <td>编码模糊查询</td>
+              <td>失败</td>
+              <td class="muted">错误：断言(locator).可见断言() failedLocator: locator(&#39;.ant-table-tbody &gt; tr, .ant-table-row, table tbody tr, .rdg-row, [role=&quot;row&quot;]:not(.rdg-header-row)&#39;).filter({ hasText: &#39;自动化模糊编码-658522&#39; }).first()断言ed: visibleTimeout: 15000msError: element(s) not foundCall log:  - 断言 &quot;可见断言&quot; with timeout 15000ms  - waiting for locator(&#39;.ant-table-tbody &gt; tr, .ant-table-row, table tbody tr, .rdg-row, [role=&quot;row&quot;]:not(.rdg-header-row)&#39;).filter({ hasText: &#39;自动化模糊编码-658522&#39; }).first()</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-e9c1e-search-by-problem-type-code/test-failed-1.png" alt="screenshot" /><div class="muted">Trace: E:\宝洁\test3\test-results\tests-problem-type-managem-e9c1e-search-by-problem-type-code\trace.zip</div><div class="muted">视频: E:\宝洁\test3\test-results\tests-problem-type-managem-e9c1e-search-by-problem-type-code\video.webm</div></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-006</td>
+              <td>备注悬停显示全文</td>
+              <td>失败</td>
+              <td class="muted">错误：断言(locator).可见断言() failedLocator: locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).filter({ hasText: &#39;自动化备注悬浮-601266&#39; }).first()断言ed: visibleTimeout: 30000msError: element(s) not foundCall log:  - 断言 &quot;可见断言&quot; with timeout 30000ms  - waiting for locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).filter({ hasText: &#39;自动化备注悬浮-601266&#39; }).first()</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-917b4-rk-shows-full-text-on-hover/test-failed-1.png" alt="screenshot" /><div class="muted">Trace: E:\宝洁\test3\test-results\tests-problem-type-managem-917b4-rk-shows-full-text-on-hover\trace.zip</div><div class="muted">视频: E:\宝洁\test3\test-results\tests-problem-type-managem-917b4-rk-shows-full-text-on-hover\video.webm</div></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-012</td>
+              <td>编辑备注刷新后保持</td>
+              <td>已知缺陷</td>
+              <td class="muted">超时错误：元素输入: 超时(10000ms).Call log:  - waiting for locator(&#39;textarea#remark, textarea[placeholder*=&quot;备注&quot;], input[placeholder*=&quot;备注&quot;]&#39;).first()</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-088c7-mark-persists-after-refresh/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-013</td>
+              <td>启用/禁用刷新后保持</td>
+              <td>已知缺陷</td>
+              <td class="muted">错误：断言(received).不等断言(断言ed) // Object.is equality断言ed: not &quot;true&quot;</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-067b6-able-persists-after-refresh/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-019</td>
+              <td>分页与每页条数</td>
+              <td>失败</td>
+              <td class="muted">错误：断言(locator).可见断言() failedLocator: locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).first()断言ed: visibleTimeout: 15000msError: element(s) not foundCall log:  - 断言 &quot;可见断言&quot; with timeout 15000ms  - waiting for locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).first()</td>
+              <td>无<div class="muted">Trace: E:\宝洁\test3\test-results\tests-problem-type-managem-68fe2-nt-pagination-and-page-size\trace.zip</div><div class="muted">视频: E:\宝洁\test3\test-results\tests-problem-type-managem-68fe2-nt-pagination-and-page-size\video.webm</div></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-023</td>
+              <td>新增后刷新列表页数据仍存在</td>
+              <td>已知缺陷</td>
+              <td class="muted">超时错误：元素等待: 超时(15000ms).Call log:  - waiting for locator(&#39;input#code, input#name, button:has-text(&quot;查询&quot;), button[h-icon=&quot;add&quot;]&#39;).first() to be visible</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-9d6f5-ist-page-still-shows-record/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-024</td>
+              <td>新增后刷新查询仍存在</td>
+              <td>已知缺陷</td>
+              <td class="muted">错误：断言(locator).可见断言() failedLocator: locator(&#39;.ant-table-tbody &gt; tr, .ant-table-row, table tbody tr, .rdg-row, [role=&quot;row&quot;]:not(.rdg-header-row)&#39;).filter({ hasText: &#39;自动化刷新校验-229550&#39; }).first()断言ed: visibleTimeout: 15000msError: element(s) not foundCall log:  - 断言 &quot;可见断言&quot; with timeout 15000ms  - waiting for locator(&#39;.ant-table-tbody &gt; tr, .ant-table-row, table tbody tr, .rdg-row, [role=&quot;row&quot;]:not(.rdg-header-row)&#39;).filter({ hasText: &#39;自动化刷新校验-229550&#39; }).first()</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-d79a1-e-then-refresh-retains-data/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="section">
+      <h2>开发定位要点</h2>
+      <div class="card">请结合以下信息快速定位：用例编号/名称、问题路径、复现步骤、数据条件、期望 vs 实际，以及截图/Trace/视频证据。</div>
+      <h2 style="margin-top:16px;">开发定位信息(失败用例)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>用例编号</th>
+            <th>用例名称</th>
+            <th>路径/页面</th>
+            <th>复现步骤</th>
+            <th>测试数据</th>
+            <th>期望 vs 实际</th>
+            <th>错误摘要</th>
+            <th>证据</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <td>TC-PTM-003</td>
+              <td>筛选(解决方式)</td>
+              <td class="muted">/problem-closed-loop-management/problem-type-management</td>
+              <td>进入列表页→选择解决方式=8D→查询→校验结果前几条均为8D</td>
+              <td>解决方式=8D</td>
+              <td class="muted">-</td>
+              <td class="muted">错误：断言(locator).包含文本断言(断言ed) failedLocator: locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).first()断言ed substring: &quot;8D&quot;Received string:    &quot;序号问题类型编码问题类型名称解决方式备注是否可用创建时间创建人更新时间更新人操作&quot;Timeout: 10000msCall log:  - 断言 &quot;包含文本断言&quot; with timeout 10000ms  - waiting for locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).first()    14 × locator resolved to &lt;div role=&quot;row&quot; aria-rowindex=&quot;1&quot; class=&quot;rdg-header-row hv-headerRow&quot;&gt;…&lt;/div&gt;       - un断言ed value &quot;序号问题类型编码问题类型名称解决方式备注是否可用创建时间创建人更新时间更新人操作&quot;</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-b0f45-filter-by-resolution-method/test-failed-1.png" alt="screenshot" /><div class="muted">追踪: E:\宝洁\test3\test-results\tests-problem-type-managem-b0f45-filter-by-resolution-method\trace.zip</div><div class="muted">视频: E:\宝洁\test3\test-results\tests-problem-type-managem-b0f45-filter-by-resolution-method\video.webm</div></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-004</td>
+              <td>筛选(是否可用)</td>
+              <td class="muted">/problem-closed-loop-management/problem-type-management</td>
+              <td>进入列表页→选择是否可用=是→查询→校验列表开关均为开启</td>
+              <td>是否可用=是</td>
+              <td class="muted">期望：[32m&quot;[7mtru[27me&quot;[39m<br/>实际：[31m&quot;[7mfals[27me&quot;[39m</td>
+              <td class="muted">错误：断言(received).toBe(断言ed) // Object.is equality断言ed: &quot;true&quot;实际: &quot;false&quot;</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-8cda6-lter-by-availability-status/test-failed-1.png" alt="screenshot" /><div class="muted">追踪: E:\宝洁\test3\test-results\tests-problem-type-managem-8cda6-lter-by-availability-status\trace.zip</div><div class="muted">视频: E:\宝洁\test3\test-results\tests-problem-type-managem-8cda6-lter-by-availability-status\video.webm</div></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-005</td>
+              <td>编码模糊查询</td>
+              <td class="muted">/problem-closed-loop-management/problem-type-management/create -&gt; /problem-closed-loop-management/problem-type-management</td>
+              <td>新增一条编码QTxxxxx数据→返回列表→输入编码前缀→查询→结果包含新数据</td>
+              <td>编码前缀查询(QTxxxxx)</td>
+              <td class="muted">期望：visible<br/></td>
+              <td class="muted">错误：断言(locator).可见断言() failedLocator: locator(&#39;.ant-table-tbody &gt; tr, .ant-table-row, table tbody tr, .rdg-row, [role=&quot;row&quot;]:not(.rdg-header-row)&#39;).filter({ hasText: &#39;自动化模糊编码-658522&#39; }).first()断言ed: visibleTimeout: 15000msError: element(s) not foundCall log:  - 断言 &quot;可见断言&quot; with timeout 15000ms  - waiting for locator(&#39;.ant-table-tbody &gt; tr, .ant-table-row, table tbody tr, .rdg-row, [role=&quot;row&quot;]:not(.rdg-header-row)&#39;).filter({ hasText: &#39;自动化模糊编码-658522&#39; }).first()</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-e9c1e-search-by-problem-type-code/test-failed-1.png" alt="screenshot" /><div class="muted">追踪: E:\宝洁\test3\test-results\tests-problem-type-managem-e9c1e-search-by-problem-type-code\trace.zip</div><div class="muted">视频: E:\宝洁\test3\test-results\tests-problem-type-managem-e9c1e-search-by-problem-type-code\video.webm</div></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-006</td>
+              <td>备注悬停显示全文</td>
+              <td class="muted">/problem-closed-loop-management/problem-type-management/create -&gt; /problem-closed-loop-management/problem-type-management</td>
+              <td>新增带长备注数据→列表查询→备注列悬停→显示全文</td>
+              <td>备注=长文本</td>
+              <td class="muted">期望：visible<br/></td>
+              <td class="muted">错误：断言(locator).可见断言() failedLocator: locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).filter({ hasText: &#39;自动化备注悬浮-601266&#39; }).first()断言ed: visibleTimeout: 30000msError: element(s) not foundCall log:  - 断言 &quot;可见断言&quot; with timeout 30000ms  - waiting for locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).filter({ hasText: &#39;自动化备注悬浮-601266&#39; }).first()</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-917b4-rk-shows-full-text-on-hover/test-failed-1.png" alt="screenshot" /><div class="muted">追踪: E:\宝洁\test3\test-results\tests-problem-type-managem-917b4-rk-shows-full-text-on-hover\trace.zip</div><div class="muted">视频: E:\宝洁\test3\test-results\tests-problem-type-managem-917b4-rk-shows-full-text-on-hover\video.webm</div></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-012</td>
+              <td>编辑备注刷新后保持</td>
+              <td class="muted">/problem-closed-loop-management/problem-type-management</td>
+              <td>详情页编辑备注→保存→返回列表→刷新→再次查看备注</td>
+              <td>备注=刷新备注-随机</td>
+              <td class="muted">-</td>
+              <td class="muted">超时错误：元素输入: 超时(10000ms).Call log:  - waiting for locator(&#39;textarea#remark, textarea[placeholder*=&quot;备注&quot;], input[placeholder*=&quot;备注&quot;]&#39;).first()</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-088c7-mark-persists-after-refresh/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-013</td>
+              <td>启用/禁用刷新后保持</td>
+              <td class="muted">/problem-closed-loop-management/problem-type-management</td>
+              <td>启用/禁用切换→刷新页面→校验状态保持</td>
+              <td>列表最后一条数据</td>
+              <td class="muted">期望：not [32m&quot;true&quot;[39m<br/></td>
+              <td class="muted">错误：断言(received).不等断言(断言ed) // Object.is equality断言ed: not &quot;true&quot;</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-067b6-able-persists-after-refresh/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-019</td>
+              <td>分页与每页条数</td>
+              <td class="muted">/problem-closed-loop-management/problem-type-management</td>
+              <td>选择每页条数=200→列表实际行数小于等于200</td>
+              <td>每页条数=200</td>
+              <td class="muted">期望：visible<br/></td>
+              <td class="muted">错误：断言(locator).可见断言() failedLocator: locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).first()断言ed: visibleTimeout: 15000msError: element(s) not foundCall log:  - 断言 &quot;可见断言&quot; with timeout 15000ms  - waiting for locator(&#39;.ant-table-row, .ant-table-tbody &gt; tr, table tbody tr, [role=&quot;row&quot;]&#39;).first()</td>
+              <td>无<div class="muted">追踪: E:\宝洁\test3\test-results\tests-problem-type-managem-68fe2-nt-pagination-and-page-size\trace.zip</div><div class="muted">视频: E:\宝洁\test3\test-results\tests-problem-type-managem-68fe2-nt-pagination-and-page-size\video.webm</div></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-023</td>
+              <td>新增后刷新列表页数据仍存在</td>
+              <td class="muted">/problem-closed-loop-management/problem-type-management</td>
+              <td>新增数据→返回列表→刷新页面→查询新增数据</td>
+              <td>名称=自动化刷新列表-随机</td>
+              <td class="muted">-</td>
+              <td class="muted">超时错误：元素等待: 超时(15000ms).Call log:  - waiting for locator(&#39;input#code, input#name, button:has-text(&quot;查询&quot;), button[h-icon=&quot;add&quot;]&#39;).first() to be visible</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-9d6f5-ist-page-still-shows-record/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+            <tr>
+              <td>TC-PTM-024</td>
+              <td>新增后刷新查询仍存在</td>
+              <td class="muted">/problem-closed-loop-management/problem-type-management</td>
+              <td>新增数据→查询确认存在→刷新页面→再次查询</td>
+              <td>名称=自动化刷新校验-随机</td>
+              <td class="muted">期望：visible<br/></td>
+              <td class="muted">错误：断言(locator).可见断言() failedLocator: locator(&#39;.ant-table-tbody &gt; tr, .ant-table-row, table tbody tr, .rdg-row, [role=&quot;row&quot;]:not(.rdg-header-row)&#39;).filter({ hasText: &#39;自动化刷新校验-229550&#39; }).first()断言ed: visibleTimeout: 15000msError: element(s) not foundCall log:  - 断言 &quot;可见断言&quot; with timeout 15000ms  - waiting for locator(&#39;.ant-table-tbody &gt; tr, .ant-table-row, table tbody tr, .rdg-row, [role=&quot;row&quot;]:not(.rdg-header-row)&#39;).filter({ hasText: &#39;自动化刷新校验-229550&#39; }).first()</td>
+              <td><img class="shot" src="file:///E:/%E5%AE%9D%E6%B4%81/test3/test-results/tests-problem-type-managem-d79a1-e-then-refresh-retains-data/test-finished-1.png" alt="screenshot" /></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>附件与路径</h2>
+      <div class="card">
+        <div>原生报告: E:\u5b9d洁\test3\playwright-report\index.html</div>
+        <div>产物目录: E:\u5b9d洁\test3\test-results</div>
+      </div>
+    </div>
+
+    <div class="footer">备注：当前运行未生成截图(仅失败时生成)，如需全量截图可开启 screenshot: "on" 重新执行。</div>
+  </div>
+</body>
+</html>

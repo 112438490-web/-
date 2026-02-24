@@ -1,0 +1,56 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e4]:
+  - generic [ref=e6]:
+    - generic [ref=e7]: 问题类型详情
+    - generic [ref=e9]:
+      - button "返 回" [ref=e10] [cursor=pointer]:
+        - generic: 返 回
+      - button "编 辑" [ref=e11] [cursor=pointer]:
+        - generic: 编 辑
+  - generic [ref=e13]:
+    - tablist [ref=e14]:
+      - generic [ref=e15]:
+        - generic:
+          - generic:
+            - 'generic "图标: left"':
+              - img
+        - generic:
+          - generic:
+            - 'generic "图标: right"':
+              - img
+        - generic [ref=e19]:
+          - tab "基础信息" [selected] [ref=e20] [cursor=pointer]
+          - tab "流程配置" [ref=e21] [cursor=pointer]
+    - tabpanel [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e26]: 基础信息
+        - table [ref=e28]:
+          - rowgroup [ref=e29]:
+            - row "问题类型编码 QT00009 问题类型名称 待删除测试流程" [ref=e30]:
+              - rowheader "问题类型编码" [ref=e31]
+              - cell "QT00009" [ref=e32]
+              - rowheader "问题类型名称" [ref=e33]
+              - cell "待删除测试流程" [ref=e34]
+            - row "解决方式 8D 是否可用 是" [ref=e35]:
+              - rowheader "解决方式" [ref=e36]
+              - cell "8D" [ref=e37]:
+                - generic [ref=e38]: 8D
+              - rowheader "是否可用" [ref=e39]
+              - cell "是" [ref=e40]:
+                - generic [ref=e41]: 是
+            - row "备注 用于测试删除功能的问题类型" [ref=e42]:
+              - rowheader "备注" [ref=e43]
+              - cell "用于测试删除功能的问题类型" [ref=e44]
+            - row "创建时间 2024-12-15 10:00:00 创建人 测试用户" [ref=e45]:
+              - rowheader "创建时间" [ref=e46]
+              - cell "2024-12-15 10:00:00" [ref=e47]
+              - rowheader "创建人" [ref=e48]
+              - cell "测试用户" [ref=e49]
+            - row "更新时间 2024-12-15 10:00:00 更新人 测试用户" [ref=e50]:
+              - rowheader "更新时间" [ref=e51]
+              - cell "2024-12-15 10:00:00" [ref=e52]
+              - rowheader "更新人" [ref=e53]
+              - cell "测试用户" [ref=e54]
+```
